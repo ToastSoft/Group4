@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.LogInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="logInfoRM">
+		select * from log_info
+	</select>
+	<resultMap type="logInfo" id="logInfoRM">
+		<id property="userId" column="user_id" />
+		<association property="userInfo" column="user_id"
+			javaType="userInfo" select="findUserInfo"></association>
+	</resultMap>
+	<select id="findUserInfo" parameterType="int" resultType="userInfo">
+		select
+		* from user_info where user_id=#{userId}
+	</select>
+	<!-- 增加 -->
+	<insert id="add" parameterType="logInfo">
+		insert into
+		log_info(log_msg,user_id) values(#{log.logMsg},#{log.userId});
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="logInfo">
+		delete from log_info where
+		log_id=#{log.logId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="logInfo">
+		update log_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="log.logMsg!=null">
+				,log_msg=#{log.logMsg}
+			</if>
+			<if test="log.logTime!=null">
+				,log_time=#{log.logTime}
+			</if>
+			<if test="log.userId!=null">
+				,user_id=#{log.userId}
+			</if>
+		</trim>
+		where log_id=#{log.logId}
+	</update>
+	<!-- 按条件查询 -->
+	<select id="findLog" resultMap="logInfoRM">
+		select * from log_info
+		<if test="log!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="log.logId!=null">and log_id=#{log.logId}</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+
+</mapper>

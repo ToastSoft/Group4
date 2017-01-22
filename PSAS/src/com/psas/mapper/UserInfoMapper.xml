@@ -4,8 +4,29 @@
 
 <mapper namespace="com.psas.dao.UserInfoDao">
 	<!-- 查找所有 -->
-	<select id="findAll" resultType="userInfo">
+	<select id="findAll" resultMap="userInfoRM">
 		select * from user_info;
 	</select>
+	<select id="findJurisdictionInfo" parameterType="int"
+		resultType="jurisdictionInfo">
+		select * from jurisdiction_info where
+		jurisdiction_id=#{jurisdictionId}
+	</select>
+	<resultMap type="userJurisdictionInfo" id="userJurisdictionInfoRM">
+		<id column="user_id" property="userId" />
+		<id column="jurisdiction_id" property="jurisdictionId" />
+		<association property="jurisdictionInfo" column="jurisdiction_id"
+			javaType="jurisdictionInfo" select="findJurisdictionInfo"></association>
+	</resultMap>
+	<select id="findUserJurisdictionInfo" parameterType="int"
+		resultMap="userJurisdictionInfoRM">
+		select * from user_jurisdiction_info where
+		user_id=#{userId}
+	</select>
+	<resultMap type="userInfo" id="userInfoRM">
+		<id column="user_id" property="userId" />
+		<collection property="userJurisdictionInfo" column="user_id"
+			javaType="java.util.ArrayList" ofType="userJurisdictionInfo" select="findUserJurisdictionInfo"></collection>
+	</resultMap>
 
 </mapper>

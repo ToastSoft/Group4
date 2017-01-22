@@ -1,6 +1,7 @@
 package com.psas.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * UserInfo entity. @author MyEclipse Persistence Tools
@@ -18,6 +19,7 @@ public class UserInfo implements java.io.Serializable {
 	private Timestamp createTime;
 	private Timestamp deleteTime;
 	private String userStatus;
+	private List<UserJurisdictionInfo> userJurisdictionInfo;
 
 	// Constructors
 
@@ -115,7 +117,20 @@ public class UserInfo implements java.io.Serializable {
 	public String toString() {
 		return "UserInfo [userId=" + userId + ", loginName=" + loginName + ", loginPassword=" + loginPassword
 				+ ", policeId=" + policeId + ", policeName=" + policeName + ", createTime=" + createTime
-				+ ", deleteTime=" + deleteTime + ", userStatus=" + userStatus + "]";
+				+ ", deleteTime=" + deleteTime + ", userStatus=" + userStatus + ", userJurisdictionInfo="
+				+ userJurisdictionInfo + "]";
 	}
+
+
+
+	public List<UserJurisdictionInfo> getUserJurisdictionInfo() {
+		return userJurisdictionInfo;
+	}
+
+	public void setUserJurisdictionInfo(List<UserJurisdictionInfo> userJurisdictionInfo) {
+		this.userJurisdictionInfo = userJurisdictionInfo;
+	}
+
+
 
 }

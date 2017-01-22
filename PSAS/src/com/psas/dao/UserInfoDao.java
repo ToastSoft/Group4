@@ -2,6 +2,8 @@ package com.psas.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.psas.entity.Page;
 import com.psas.entity.UserInfo;
 
@@ -28,7 +30,7 @@ public interface UserInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public void add(UserInfo user);
+	public void add(@Param("user") UserInfo user);
 
 	/**
 	 * 删除用户信息dao接口
@@ -36,7 +38,7 @@ public interface UserInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public void delete(UserInfo user);
+	public void delete(@Param("user") UserInfo user);
 
 	/**
 	 * 修改用户信息dao接口
@@ -44,7 +46,7 @@ public interface UserInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public void update(UserInfo user);
+	public void update(@Param("user") UserInfo user);
 
 	/**
 	 * 根据条件查找用户信息
@@ -53,5 +55,5 @@ public interface UserInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public void findUser(UserInfo user, Page page);
+	public void findUser(@Param("user") UserInfo user, @Param("page") Page page);
 }

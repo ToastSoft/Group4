@@ -18,8 +18,11 @@ CREATE TABLE `user_info` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `delete_time` timestamp NULL DEFAULT NULL,
   `user_status` char(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `login_name` (`login_name`),
+  KEY `police_id` (`police_id`),
+  CONSTRAINT `police_id` FOREIGN KEY (`police_id`) REFERENCES `policeman_info` (`policeman_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO `user_info` VALUES ('1', 'admin', '000000', '1', '薄警官', '2017-01-11 15:44:06', null, '0');

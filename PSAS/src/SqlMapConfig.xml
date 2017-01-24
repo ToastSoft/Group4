@@ -11,7 +11,7 @@
 		<typeAlias type="com.psas.entity.UserInfo" alias="userInfo" />
 		<typeAlias type="com.psas.entity.JurisdictionInfo" alias="jurisdictionInfo" />
 		<typeAlias type="com.psas.entity.UserJurisdictionInfo" alias="userJurisdictionInfo" />
-		<typeAlias type="com.psas.entity.JurisdictionInfo" alias="jurisdictionInfo" />
+		<typeAlias type="com.psas.entity.PolicemanInfo" alias="policemanInfo" />
 		
 	</typeAliases>
 

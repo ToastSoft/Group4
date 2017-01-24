@@ -55,5 +55,5 @@ public interface UserInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public void findUser(@Param("user") UserInfo user, @Param("page") Page page);
+	public List<UserInfo> findUser(@Param("user") UserInfo user, @Param("page") Page page);
 }

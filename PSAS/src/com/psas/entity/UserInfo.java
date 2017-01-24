@@ -20,11 +20,26 @@ public class UserInfo implements java.io.Serializable {
 	private Timestamp deleteTime;
 	private String userStatus;
 	private List<UserJurisdictionInfo> userJurisdictionInfo;
+	private PolicemanInfo policemanInfo;
 
 	// Constructors
 
+	public UserInfo(Integer userId) {
+		super();
+		this.userId = userId;
+	}
+
 	/** default constructor */
 	public UserInfo() {
+	}
+
+	public UserInfo(String loginName, String loginPassword, Integer policeId, String policeName, String userStatus) {
+		super();
+		this.loginName = loginName;
+		this.loginPassword = loginPassword;
+		this.policeId = policeId;
+		this.policeName = policeName;
+		this.userStatus = userStatus;
 	}
 
 	/** minimal constructor */
@@ -118,7 +133,7 @@ public class UserInfo implements java.io.Serializable {
 		return "UserInfo [userId=" + userId + ", loginName=" + loginName + ", loginPassword=" + loginPassword
 				+ ", policeId=" + policeId + ", policeName=" + policeName + ", createTime=" + createTime
 				+ ", deleteTime=" + deleteTime + ", userStatus=" + userStatus + ", userJurisdictionInfo="
-				+ userJurisdictionInfo + "]";
+				+ userJurisdictionInfo + ", policemanInfo=" + policemanInfo + "]";
 	}
 
 
@@ -129,6 +144,14 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setUserJurisdictionInfo(List<UserJurisdictionInfo> userJurisdictionInfo) {
 		this.userJurisdictionInfo = userJurisdictionInfo;
+	}
+
+	public PolicemanInfo getPolicemanInfo() {
+		return policemanInfo;
+	}
+
+	public void setPolicemanInfo(PolicemanInfo policemanInfo) {
+		this.policemanInfo = policemanInfo;
 	}
 
 

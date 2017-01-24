@@ -6,7 +6,7 @@ import com.psas.entity.LogInfo;
 import com.psas.entity.Page;
 
 /**
- * 日志信息的service
+ * 日志信息的service接口
  * 
  * @author XulaiWang
  * @data: 2017年1月14日 上午11:12:02

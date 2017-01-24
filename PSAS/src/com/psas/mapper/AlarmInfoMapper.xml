@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.AlarmInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultType="alarmInfo">
+		select * from alarm_info
+	</select>
+	<!-- 增加 -->
+	<insert id="add" parameterType="alarmInfo">
+		insert into
+		alarm_info values(#{alarmId},#{alarmName},#{alarmGender},#{alarmTelephone},
+						  #{alarmAddress},#{alarmTime},#{alarmFormat},#{alarmContent},
+						  #{alarmCaseTime},#{alarmPlace},#{receptionPoliceman},
+						  #{handleSituation},#{handlePoliceman},#{lossSituation},
+						  #{deathNumber},#{injureNumber},#{economicLoss},#{handleResult},#{dutyLeader});
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="alarmInfo">
+		delete from alarm_info where
+		alarm_id=#{alarmId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="alarmInfo">
+		update log_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="alarmName!=null">
+				,alarm_name=#{alarmName}
+			</if>
+			<if test="alarmGender!=null">
+				,alarm_gender=#{alarmGender}
+			</if>
+			<if test="alarmTelephone!=null">
+				,alarm_telephone=#{alarmTelephone}
+			</if>
+			<if test="alarmAddress!=null">
+				,alarm_address=#{alarmAddress}
+			</if>
+			<if test="alarmTime!=null">
+				,alarm_time=#{alarmTime}
+			</if>
+			<if test="alarmFormat!=null">
+				,alarm_format=#{alarmFormat}
+			</if>
+			<if test="alarmContent!=null">
+				,alarm_content=#{alarmContent}
+			</if>
+			<if test="alarmCaseTime!=null">
+				,alarm_case_time=#{alarmCaseTime}
+			</if>
+			<if test="alarmPlace!=null">
+				,alarm_place=#{alarmPlace}
+			</if>
+			<if test="receptionPoliceman!=null">
+				,alarm_policeman=#{receptionPoliceman}
+			</if>
+			<if test="handleSituation!=null">
+				,handle_situation=#{handleSituation}
+			</if>
+			<if test="handlePoliceman!=null">
+				,handle_policeman=#{handlePoliceman}
+			</if>
+			<if test="lossSituation!=null">
+				,loss_situation=#{lossSituation}
+			</if>
+			<if test="deathNumber!=null">
+				,death_number=#{deathNumber}
+			</if>
+			<if test="injureNumber!=null">
+				,injure_number=#{injureNumber}
+			</if>
+			<if test="economicLoss!=null">
+				,economic_loss=#{economicLoss}
+			</if>
+			<if test="handleResult!=null">
+				,handle_result=#{handleResult}
+			</if>
+			<if test="dutyLeader!=null">
+				,duty_leader=#{dutyLeader}
+			</if>
+		</trim>
+		where alarm_id=#{alarmId}
+	</update>
+	<!-- 按条件查询 -->
+	<select id="findAlarm" resultType="alarmInfo">
+		select * from alarm_info
+		<if test="alarm!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="alarmId!=null">and alarm_id=#{alarmId}</if> 
+				<if test="receptionPoliceman!=null">and reception_policeman=#{receptionPoliceman}</if> 
+				<if test="alarmTime!=null">and alarm_time=#{alarmTime}</if> 
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+
+</mapper>

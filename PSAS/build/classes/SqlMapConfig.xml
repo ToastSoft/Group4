@@ -9,6 +9,7 @@
 	<typeAliases>
 		<typeAlias type="com.psas.entity.LogInfo" alias="logInfo" />
 		<typeAlias type="com.psas.entity.UserInfo" alias="userInfo" />
+		<typeAlias type="com.psas.entity.AlarmInfo" alias="alarmInfo" />
 	</typeAliases>
 
 </configuration> 

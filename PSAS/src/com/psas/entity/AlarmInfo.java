@@ -23,7 +23,7 @@ public class AlarmInfo implements java.io.Serializable {
 	private Integer receptionPoliceman;
 	private String handleSituation;
 	private Integer handlePoliceman;
-	private String lossSiuation;
+	private String lossSituation;
 	private Integer deathNumber;
 	private Integer injuredNumber;
 	private Double economicLoss;
@@ -51,7 +51,7 @@ public class AlarmInfo implements java.io.Serializable {
 		this.receptionPoliceman = receptionPoliceman;
 		this.handleSituation = handleSituation;
 		this.handlePoliceman = handlePoliceman;
-		this.lossSiuation = lossSiuation;
+		this.lossSituation = lossSiuation;
 		this.deathNumber = deathNumber;
 		this.injuredNumber = injuredNumber;
 		this.economicLoss = economicLoss;
@@ -75,7 +75,7 @@ public class AlarmInfo implements java.io.Serializable {
 		this.receptionPoliceman = receptionPoliceman;
 		this.handleSituation = handleSituation;
 		this.handlePoliceman = handlePoliceman;
-		this.lossSiuation = lossSiuation;
+		this.lossSituation = lossSiuation;
 		this.deathNumber = deathNumber;
 		this.injuredNumber = injuredNumber;
 		this.economicLoss = economicLoss;
@@ -189,12 +189,12 @@ public class AlarmInfo implements java.io.Serializable {
 		this.handlePoliceman = handlePoliceman;
 	}
 
-	public String getLossSiuation() {
-		return this.lossSiuation;
+	public String getLossSituation() {
+		return this.lossSituation;
 	}
 
 	public void setLossSiuation(String lossSiuation) {
-		this.lossSiuation = lossSiuation;
+		this.lossSituation = lossSiuation;
 	}
 
 	public Integer getDeathNumber() {

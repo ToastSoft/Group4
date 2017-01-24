@@ -40,4 +40,9 @@ public class JurisdictionInfo implements java.io.Serializable {
 		this.jurisdictionName = jurisdictionName;
 	}
 
+	@Override
+	public String toString() {
+		return "JurisdictionInfo [jurisdictionId=" + jurisdictionId + ", jurisdictionName=" + jurisdictionName + "]";
+	}
+
 }

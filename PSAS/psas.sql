@@ -525,7 +525,7 @@ CREATE TABLE `alarm_info` (
   `reception_policeman` int(11) NOT NULL,
   `handle_situation` varchar(500) NOT NULL,
   `handle_policeman` int(11) NOT NULL,
-  `loss_siuation` varchar(200) NOT NULL,
+  `loss_situation` varchar(200) NOT NULL,
   `death_number` int(11) NOT NULL,
   `injured_number` int(11) NOT NULL,
   `economic_loss` double NOT NULL,

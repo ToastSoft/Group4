@@ -15,11 +15,27 @@ public class CriminalReport implements java.io.Serializable {
 	private Timestamp reportTime;
 	private Integer caseId;
 
-	// Constructors
-
 	/** default constructor */
 	public CriminalReport() {
 	}
+	
+
+	public CriminalReport(Integer criminalReportId, String caseReport, Timestamp reportTime, Integer caseId) {
+		super();
+		this.criminalReportId = criminalReportId;
+		this.caseReport = caseReport;
+		this.reportTime = reportTime;
+		this.caseId = caseId;
+	}
+
+
+	public CriminalReport(Integer caseId) {
+		super();
+		this.caseId = caseId;
+	}
+
+
+	// Constructors
 
 	/** full constructor */
 	public CriminalReport(String caseReport, Timestamp reportTime, Integer caseId) {
@@ -28,38 +44,44 @@ public class CriminalReport implements java.io.Serializable {
 		this.caseId = caseId;
 	}
 
+	public Integer getCaseId() {
+		return this.caseId;
+	}
+
 	// Property accessors
-
-	public Integer getCriminalReportId() {
-		return this.criminalReportId;
-	}
-
-	public void setCriminalReportId(Integer criminalReportId) {
-		this.criminalReportId = criminalReportId;
-	}
 
 	public String getCaseReport() {
 		return this.caseReport;
 	}
 
-	public void setCaseReport(String caseReport) {
-		this.caseReport = caseReport;
+	public Integer getCriminalReportId() {
+		return this.criminalReportId;
 	}
 
 	public Timestamp getReportTime() {
 		return this.reportTime;
 	}
 
+	public void setCaseId(Integer caseId) {
+		this.caseId = caseId;
+	}
+
+	public void setCaseReport(String caseReport) {
+		this.caseReport = caseReport;
+	}
+
+	public void setCriminalReportId(Integer criminalReportId) {
+		this.criminalReportId = criminalReportId;
+	}
+
 	public void setReportTime(Timestamp reportTime) {
 		this.reportTime = reportTime;
 	}
 
-	public Integer getCaseId() {
-		return this.caseId;
-	}
-
-	public void setCaseId(Integer caseId) {
-		this.caseId = caseId;
+	@Override
+	public String toString() {
+		return "CriminalReport [criminalReportId=" + criminalReportId + ", caseReport=" + caseReport + ", reportTime="
+				+ reportTime + ", caseId=" + caseId + "]";
 	}
 
 }

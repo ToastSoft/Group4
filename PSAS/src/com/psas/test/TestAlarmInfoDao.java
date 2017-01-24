@@ -35,7 +35,6 @@ public class TestAlarmInfoDao {
 	
 	@Test
 	public void testAdd(){
-		AlarmInfo alarm = new AlarmInfo( "田馥甄", "1", "18698688666", "中南海", "2017-01-13 14:03:02", 0, "有人非礼", "2016-12-25 14:02:21", "软件园B8", 2, "处警情况", 2, "损失xxxx", 100, 500, 15, 0, 3);
 		
 	}
 	

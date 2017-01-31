@@ -9,6 +9,10 @@
 	<typeAliases>
 		<typeAlias type="com.psas.entity.LogInfo" alias="logInfo" />
 		<typeAlias type="com.psas.entity.UserInfo" alias="userInfo" />
+		<typeAlias type="com.psas.entity.AlarmInfo" alias="alarmInfo" />
+		<typeAlias type="com.psas.entity.JurisdictionInfo" alias="jurisdictionInfo" />
+		<typeAlias type="com.psas.entity.UserJurisdictionInfo" alias="userJurisdictionInfo" />
+		<typeAlias type="com.psas.entity.PolicemanInfo" alias="policemanInfo" />
 	</typeAliases>
 
 </configuration> 

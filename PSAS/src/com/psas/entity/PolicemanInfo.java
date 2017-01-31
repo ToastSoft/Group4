@@ -90,4 +90,11 @@ public class PolicemanInfo implements java.io.Serializable {
 		this.psId = psId;
 	}
 
+	@Override
+	public String toString() {
+		return "PolicemanInfo [policemanId=" + policemanId + ", policemanName=" + policemanName + ", policemanGender="
+				+ policemanGender + ", policemanAge=" + policemanAge + ", policemanAddress=" + policemanAddress
+				+ ", policemanType=" + policemanType + ", psId=" + psId + "]";
+	}
+
 }

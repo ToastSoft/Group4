@@ -112,7 +112,7 @@ public class TestUserInfoDao {
 	 */
 	@Test
 	public void testFindUserById() {
-		UserInfo user = new UserInfo(1);
+		UserInfo user = new UserInfo(2);
 		List<UserInfo> users = dao.findUser(user, null);
 		for (UserInfo u : users) {
 			System.out.println(u);
@@ -127,7 +127,7 @@ public class TestUserInfoDao {
 	 */
 	@Test
 	public void testFindUserByPage() {
-		Page page = new Page(1);
+		Page page = new Page(2);
 		List<UserInfo> users = dao.findUser(null, page);
 		for (UserInfo u : users) {
 			System.out.println(u);

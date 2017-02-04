@@ -40,4 +40,13 @@ public class NationInfo implements java.io.Serializable {
 		this.nationName = nationName;
 	}
 
+	@Override
+	public String toString() {
+		return "NationInfo [nationId=" + nationId + ", nationName=" + nationName + "]";
+	}
+
+	public NationInfo(Integer nationId) {
+		this.nationId = nationId;
+	}
+
 }

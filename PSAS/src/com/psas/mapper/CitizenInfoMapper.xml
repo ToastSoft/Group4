@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.CitizenInfoDao">
+
+	<!-- 查找所有 -->
+
+	<select id="findAll" resultMap="citizenInfoRM">
+		select * from citizen_info
+	</select>
+	<select id="findNationInfo" parameterType="int" resultType="nationInfo">
+		select * from nation_info where nation_id=#{nationId}
+	</select>
+
+	<resultMap type="citizenInfo" id="citizenInfoRM">
+		<id column="id_card" property="idCard" />
+		<id column="nation_id" property="nationId" />
+		<association property="nation" column="nation_id"
+			javaType="nationInfo" select="findNationInfo"></association>
+	</resultMap>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

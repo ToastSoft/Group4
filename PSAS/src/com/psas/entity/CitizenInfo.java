@@ -19,6 +19,7 @@ public class CitizenInfo implements java.io.Serializable {
 	private String idProfessional;
 	private String idCompany;
 	private Integer nationId;
+	private NationInfo nation;
 
 	// Constructors
 
@@ -111,6 +112,21 @@ public class CitizenInfo implements java.io.Serializable {
 
 	public void setNationId(Integer nationId) {
 		this.nationId = nationId;
+	}
+
+	public NationInfo getNation() {
+		return nation;
+	}
+
+	public void setNation(NationInfo nation) {
+		this.nation = nation;
+	}
+
+	@Override
+	public String toString() {
+		return "CitizenInfo [idCard=" + idCard + ", idName=" + idName + ", idAge=" + idAge + ", idGender=" + idGender
+				+ ", idBirthday=" + idBirthday + ", idAddress=" + idAddress + ", idProfessional=" + idProfessional
+				+ ", idCompany=" + idCompany + ", nationId=" + nationId + ", nation=" + nation + "]";
 	}
 
 }

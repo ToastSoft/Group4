@@ -129,4 +129,11 @@ public class CitizenInfo implements java.io.Serializable {
 				+ ", idCompany=" + idCompany + ", nationId=" + nationId + ", nation=" + nation + "]";
 	}
 
+
+	public CitizenInfo(String idCard) {
+		super();
+		this.idCard = idCard;
+	}
+	
+
 }

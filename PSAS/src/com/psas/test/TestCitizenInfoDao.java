@@ -1,5 +1,8 @@
 package com.psas.test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.PropertyConfigurator;
@@ -23,13 +26,33 @@ public class TestCitizenInfoDao {
 	@Before
 	public void init() {
 		ac = new ClassPathXmlApplicationContext(conf);
-		dao = ac.getBean(CitizenInfoDao.BEAN_NAME,CitizenInfoDao.class);
+		dao = ac.getBean(CitizenInfoDao.BEAN_NAME, CitizenInfoDao.class);
 	}
+
 	@Test
-	public void testFindAll(){
+	public void testFindAll() {
 		List<CitizenInfo> citizens = dao.findAll();
 		for (CitizenInfo c : citizens) {
 			System.out.println(c);
 		}
 	}
+
+	@Test
+	public void testDelete() {
+		CitizenInfo citizenInfo = new CitizenInfo("210203199101311544");
+		dao.delete(citizenInfo);
+
+	}
+
+	@Test
+	public void testAdd() throws ParseException {
+		Date bir = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = new String("1991-01-31");
+		bir = sdf.parse(str);
+		System.out.println(bir);
+		CitizenInfo citizen = new CitizenInfo("210203199101311544", "王大", 22, "1", bir, "马栏河", "程序员", "yulinInfo", 1);
+		dao.add(citizen);
+	}
+
 }

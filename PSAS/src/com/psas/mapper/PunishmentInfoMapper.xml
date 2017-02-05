@@ -7,7 +7,9 @@
 	<select id="findAll" resultMap="punishmentInfoRM">
 		select * from punishment_info;
 	</select>
-	<select id="findPublicSecurity" resultMap="publicSecurity"></select>
+	<select id="findPublicSecurity" parameterType="int" resultType="publicSecurity">
+		select * from public_security where ps_id=#{psId}
+	</select>
 	<resultMap type="punishmentInfo" id="punishmentInfoRM">
 		<id column="ps_id" property="psId"/>
 		<association property="publicSecurity" column="ps_id"

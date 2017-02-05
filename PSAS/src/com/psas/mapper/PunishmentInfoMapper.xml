@@ -14,7 +14,6 @@
 		<id column="ps_id" property="psId"/>
 		<association property="publicSecurity" column="ps_id"
 			javaType="publicSecurity" select="findPublicSecurity"></association>
-	
 	</resultMap>
 
 	

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.psas.dao.Criminal_ReportDao">
+<!-- 查找所有 -->
+<select id="findAll" resultType="criminal_Report">
+  select * from criminal_report
+</select>
+<!-- 增加 -->
+<insert id="add" parameterType="criminal_Report">
+ insert into criminal_report values(#{criminal.criminalReportId},#{criminal.caseReport},#{criminal.reportTime},
+ #{criminal.caseId})
+</insert>
+<!-- 删除 -->
+<delete id="delete" parameterType="criminal_Report">
+  delete from criminal_report where criminal_report_id=#{criminal.criminalReportId}
+</delete>
+<!-- 更改 -->
+<update id="update" parameterType="criminal_Report">
+  update criminal_report
+<trim prefix="set" prefixOverrides=",">
+			<if test="criminal.caseId!=null">
+				,case_Id=#{criminal.caseId}
+			</if>
+			<if test="criminal.reportTime!=null">
+				,report_time=#{criminal.reportTime}
+			</if>
+			<if test="criminal.caseReport!=null">
+			   ,case_Report=#{criminal.caseReport}
+			</if>
+		</trim>
+		where criminal_report_id=#{criminal.criminalReportId}
+	</update>
+<!-- 按条件查询 -->
+	<select id="findCriminal" resultType="criminal_Report">
+		select * from criminal_report
+		<if test="criminal!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="criminal.caseId!=null">and case_id=#{criminal.caseId}</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+</mapper>

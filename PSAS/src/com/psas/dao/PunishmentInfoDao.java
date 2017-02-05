@@ -9,9 +9,10 @@ import com.psas.entity.PunishmentInfo;
 import com.psas.entity.UserInfo;
 
 /**
- * 用户信息DAO 接口
- * @author  XulaiWang
- * @data:  2017年1月17日 下午4:23:06
+ * 
+ * TODO 公安局治安，行政处罚人员情况登记表
+ * @author  Cunbao Song
+ * @data:  2017年2月5日 下午2:37:04
  * @version:  V1.0
  */
 public interface PunishmentInfoDao {
@@ -48,7 +49,7 @@ public interface PunishmentInfoDao {
 	 * @return void
 	 */
 	public void update(@Param("punishment") PunishmentInfo punishment);
-
+	
 	/**
 	 * 根据条件查找用户信息
 	 * @param user
@@ -56,5 +57,5 @@ public interface PunishmentInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public List<UserInfo> findUser(@Param("punishment") PunishmentInfo punishment, @Param("page") Page page);
+	public List<PunishmentInfo> findUser(@Param("punishment") PunishmentInfo punishment, @Param("page") Page page);
 }

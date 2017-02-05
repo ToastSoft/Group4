@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.CaseLaterDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="caseLaterRM">
+		select * from case_later
+	</select>
+   <select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<resultMap type="caseLater" id="caseLaterRM">
+		<id column="case_id" property="caseId"/>
+		<association property="acceptCase" column="case_id"
+			javaType="acceptCase" select="findAcceptCase">
+		</association>
+	</resultMap>
+<!-- 增加 -->
+<insert id="add" parameterType="caseLater">
+insert into case_later values(#{caseLater.caseLaterId},#{caseLater.laterReason},#{caseLater.supplyInfo},#{caseLater.caseId})
+</insert>
+<!-- 删除 -->
+<delete id="delete" parameterType="caseLater">
+ delete from case_later where case_later_id=#{caseLater.caseLaterId}
+</delete>
+<!--更改 -->
+<update id="update" parameterType="caseLater">
+update case_later
+<trim prefix="set" prefixOverrides=",">
+			<if test="caseLater.caseId!=null">
+				,case_id=#{caseLater.caseId}
+			</if>
+			<if test="caseLater.laterReason!=null">
+				,later_reason=#{caseLater.laterReason}
+			</if>
+			<if test="caseLater.supplyInfo!=null">
+				,supply_info=#{caseLater.supplyInfo}
+			</if>
+		</trim>
+		where case_later_id=#{caseLater.caseLaterId}
+</update>
+<!-- 按条件查询 -->
+<select id="findCase" resultMap="caseLaterRM">
+		select * from case_later
+		<if test="caseLater!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="caseLater.caseId!=null">and case_id=#{caseLater.caseId}</if>
+				<if test="caseLater.policemanId!=nu"></if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+</mapper>

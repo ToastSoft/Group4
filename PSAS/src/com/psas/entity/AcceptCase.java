@@ -10,6 +10,7 @@ public class AcceptCase implements java.io.Serializable {
 
 	// Fields
 
+
 	private Integer caseId;
 	private Timestamp caseTime;
 	private String casePlace;
@@ -111,5 +112,13 @@ public class AcceptCase implements java.io.Serializable {
 	public void setAlarmId(Integer alarmId) {
 		this.alarmId = alarmId;
 	}
+
+	@Override
+	public String toString() {
+		return "AcceptCase [caseId=" + caseId + ", caseTime=" + caseTime + ", casePlace=" + casePlace
+				+ ", placeCaseTime=" + placeCaseTime + ", caseName=" + caseName + ", deptId=" + deptId
+				+ ", policemanId=" + policemanId + ", psId=" + psId + ", alarmId=" + alarmId + "]";
+	}
+	
 
 }

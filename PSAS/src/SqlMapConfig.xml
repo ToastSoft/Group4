@@ -17,8 +17,11 @@
 		<typeAlias type="com.psas.entity.CitizenInfo" alias="citizenInfo" />
 		<typeAlias type="com.psas.entity.PunishmentInfo" alias="punishmentInfo" />
 		<typeAlias type="com.psas.entity.PublicSecurity" alias="publicSecurity" />
+		<typeAlias type="com.psas.entity.FineInfo" alias="fineInfo"/>
+		<typeAlias type="com.psas.entity.CriminalReport" alias="criminal_Report"/>
+		<typeAlias type="com.psas.entity.CaseLater" alias="caseLater"/>
+		<typeAlias type="com.psas.entity.AcceptCase" alias="acceptCase"/>
 	</typeAliases>
-
 </configuration> 
 
 

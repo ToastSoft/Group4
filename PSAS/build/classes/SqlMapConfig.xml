@@ -16,6 +16,7 @@
 		<typeAlias type="com.psas.entity.NationInfo" alias="nationInfo" />
 		<typeAlias type="com.psas.entity.CitizenInfo" alias="citizenInfo" />
 		<typeAlias type="com.psas.entity.PunishmentInfo" alias="punishmentInfo" />
+		<typeAlias type="com.psas.entity.PublicSecurity" alias="publicSecurity" />
 	</typeAliases>
 
 </configuration> 

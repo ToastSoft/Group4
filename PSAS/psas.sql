@@ -22,8 +22,11 @@ CREATE TABLE `user_info` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `delete_time` timestamp NULL DEFAULT NULL,
   `user_status` char(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `login_name` (`login_name`),
+  KEY `police_id` (`police_id`),
+  CONSTRAINT `police_id` FOREIGN KEY (`police_id`) REFERENCES `policeman_info` (`policeman_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO `user_info` VALUES ('1', 'admin', '000000', '1', '薄警官', '2017-01-11 15:44:06', null, '0');
@@ -110,6 +113,7 @@ INSERT INTO `public_security` VALUES ('5', '大连市开发区分区', '0411-800
 # Table structure for policeman_info
 # ----------------------------
 DROP TABLE IF EXISTS `policeman_info`;
+select * from policeman_info;
 CREATE TABLE `policeman_info` (
   `policeman_id` int(11) NOT NULL AUTO_INCREMENT,
   `policeman_name` varchar(20) NOT NULL,
@@ -423,6 +427,7 @@ INSERT INTO `security_info` VALUES ('2', '非法集会', '驱散', null, '14');
 #
 DROP TABLE IF EXISTS `case_later`;
 select * from case_later;
+select * from accept_case;
 CREATE TABLE `case_later` (
   `case_later_id` int(11) NOT NULL AUTO_INCREMENT,
   `later_reason` varchar(500) NOT NULL,

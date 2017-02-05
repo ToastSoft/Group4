@@ -20,17 +20,18 @@ public class CriminalReport implements java.io.Serializable {
 	}
 	
 
-	public CriminalReport(Integer criminalReportId, String caseReport, Timestamp reportTime, Integer caseId) {
+	public CriminalReport(Integer criminalReportId,String caseReport, Timestamp reportTime, Integer caseId) {
 		super();
-		this.criminalReportId = criminalReportId;
+		this.criminalReportId=criminalReportId;
 		this.caseReport = caseReport;
 		this.reportTime = reportTime;
 		this.caseId = caseId;
 	}
 
 
-	public CriminalReport(Integer caseId) {
+	public CriminalReport(Integer caseId,Integer criminalReportId) {
 		super();
+		this.criminalReportId=criminalReportId;
 		this.caseId = caseId;
 	}
 

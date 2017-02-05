@@ -16,8 +16,26 @@ public class PunishmentInfo implements java.io.Serializable {
 	private String idCard;
 	private Integer psId;
 	private Integer caseId;
+	private CitizenInfo citizenInfo;
+	private PublicSecurity publicSecurity;
 
 	// Constructors
+
+	public CitizenInfo getCitizenInfo() {
+		return citizenInfo;
+	}
+
+	public void setCitizenInfo(CitizenInfo citizenInfo) {
+		this.citizenInfo = citizenInfo;
+	}
+
+	public PublicSecurity getPublicSecurity() {
+		return publicSecurity;
+	}
+
+	public void setPublicSecurity(PublicSecurity publicSecurity) {
+		this.publicSecurity = publicSecurity;
+	}
 
 	/** default constructor */
 	public PunishmentInfo() {
@@ -81,5 +99,13 @@ public class PunishmentInfo implements java.io.Serializable {
 	public void setCaseId(Integer caseId) {
 		this.caseId = caseId;
 	}
+
+	@Override
+	public String toString() {
+		return "PunishmentInfo [punishmentId=" + punishmentId + ", punishmentSituation=" + punishmentSituation
+				+ ", punishmentTime=" + punishmentTime + ", idCard=" + idCard + ", psId=" + psId + ", caseId=" + caseId
+				+ ", citizenInfo=" + citizenInfo + ", publicSecurity=" + publicSecurity + "]";
+	}
+	
 
 }

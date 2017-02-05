@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.UserInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="userInfoRM">
+		select * from user_info;
+	</select>
+	<select id="findJurisdictionInfo" parameterType="int"
+		resultType="jurisdictionInfo">
+		select * from jurisdiction_info where
+		jurisdiction_id=#{jurisdictionId}
+	</select>
+	<select id="findPolicemanInfo" parameterType="int" resultType="policemanInfo">
+		select * from policeman_info where
+		policeman_id=#{policeId}
+	</select>
+	<resultMap type="userJurisdictionInfo" id="userJurisdictionInfoRM">
+		<id column="user_id" property="userId" />
+
+		<id column="jurisdiction_id" property="jurisdictionId" />
+		<association property="jurisdictionInfo" column="jurisdiction_id"
+			javaType="jurisdictionInfo" select="findJurisdictionInfo"></association>
+
+	</resultMap>
+	<select id="findUserJurisdictionInfo" parameterType="int"
+		resultMap="userJurisdictionInfoRM">
+		select * from user_jurisdiction_info where
+		user_id=#{userId}
+	</select>
+	<resultMap type="userInfo" id="userInfoRM">
+		<id column="user_id" property="userId" />
+		<id column="police_id" property="policeId" />
+		<association property="policemanInfo" column="police_id"
+			javaType="policemanInfo" select="findPolicemanInfo"></association>
+		<collection property="userJurisdictionInfo" column="user_id"
+			javaType="java.util.ArrayList" ofType="userJurisdictionInfo" select="findUserJurisdictionInfo"></collection>
+	</resultMap>
+
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="userInfo">
+		insert into
+		user_info(login_name,login_password,police_id,police_name,user_status)
+		values(#{user.loginName},#{user.loginPassword},#{user.policeId},#{user.policeName},#{user.userStatus})
+	</insert>
+
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="userInfo">
+		delete from user_info
+		where
+		user_id=#{user.userId}
+	</delete>
+
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="userInfo">
+		update user_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="user.loginPassword!=null">
+				,login_password=#{user.loginPassword}
+			</if>
+			<if test="user.policeId!=null">
+				,police_id=#{user.policeId}
+			</if>
+			<if test="user.policeName!=null">
+				,police_name=#{user.policeName}
+			</if>
+			<if test="user.createTime!=null">
+				,create_time=#{user.createTime}
+			</if>
+			<if test="user.deleteTime!=null">
+				,delete_time=#{user.deleteTime}
+			</if>
+			<if test="user.userStatus!=null">
+				,user_status=#{user.userStatus}
+			</if>
+		</trim>
+		where user_id=#{user.userId}
+	</update>
+
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="userInfoRM">
+		select * from user_info
+		<if test="user!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="user.userId!=null">
+					user_id=#{user.userId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

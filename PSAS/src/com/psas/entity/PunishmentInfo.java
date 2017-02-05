@@ -49,6 +49,20 @@ public class PunishmentInfo implements java.io.Serializable {
 		this.psId = psId;
 		this.caseId = caseId;
 	}
+	
+
+	public PunishmentInfo(Integer punishmentId, String punishmentSituation, Timestamp punishmentTime, String idCard,
+			Integer psId, Integer caseId, CitizenInfo citizenInfo, PublicSecurity publicSecurity) {
+		super();
+		this.punishmentId = punishmentId;
+		this.punishmentSituation = punishmentSituation;
+		this.punishmentTime = punishmentTime;
+		this.idCard = idCard;
+		this.psId = psId;
+		this.caseId = caseId;
+		this.citizenInfo = citizenInfo;
+		this.publicSecurity = publicSecurity;
+	}
 
 	// Property accessors
 

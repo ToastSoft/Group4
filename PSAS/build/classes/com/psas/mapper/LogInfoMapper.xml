@@ -19,7 +19,7 @@
 	<!-- 增加 -->
 	<insert id="add" parameterType="logInfo">
 		insert into
-		log_info(log_msg,user_id) values(#{log.logMsg},#{log.userId});
+		log_info(log_msg,user_id) values(#{log.logMsg},#{log.userId})
 	</insert>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="logInfo">

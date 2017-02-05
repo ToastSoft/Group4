@@ -3,9 +3,7 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="com.psas.dao.CitizenInfoDao">
-
 	<!-- 查找所有 -->
-
 	<select id="findAll" resultMap="citizenInfoRM">
 		select * from citizen_info
 	</select>
@@ -19,6 +17,20 @@
 		<association property="nation" column="nation_id"
 			javaType="nationInfo" select="findNationInfo"></association>
 	</resultMap>
+
+	<!-- 增加 -->
+	<insert id="add" parameterType="citizenInfo">
+		insert into citizen_info
+		values(#{citizen.idCard},#{citizen.idName},#{citizen.idAge},#{citizen.idGender},#{citizen.idBirthday},#{citizen.idAddress},#{citizen.idProfessional},#{citizen.idCompany},#{citizen.nationId})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="citizenInfo">
+		delete from citizen_info where
+		id_card=#{citizen.idCard}
+	</delete>
+	<!-- 修改 -->
+
+
 
 </mapper>
 

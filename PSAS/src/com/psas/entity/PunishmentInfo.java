@@ -18,6 +18,7 @@ public class PunishmentInfo implements java.io.Serializable {
 	private Integer caseId;
 	private CitizenInfo citizenInfo;
 	private PublicSecurity publicSecurity;
+	private AcceptCase acceptCase;
 
 	// Constructors
 
@@ -51,20 +52,17 @@ public class PunishmentInfo implements java.io.Serializable {
 	}
 	
 
-	public PunishmentInfo(Integer punishmentId, String punishmentSituation, Timestamp punishmentTime, String idCard,
-			Integer psId, Integer caseId, CitizenInfo citizenInfo, PublicSecurity publicSecurity) {
-		super();
-		this.punishmentId = punishmentId;
-		this.punishmentSituation = punishmentSituation;
-		this.punishmentTime = punishmentTime;
-		this.idCard = idCard;
-		this.psId = psId;
-		this.caseId = caseId;
-		this.citizenInfo = citizenInfo;
-		this.publicSecurity = publicSecurity;
-	}
+	
 
 	// Property accessors
+
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
 
 	public Integer getPunishmentId() {
 		return this.punishmentId;
@@ -114,12 +112,30 @@ public class PunishmentInfo implements java.io.Serializable {
 		this.caseId = caseId;
 	}
 
+	public PunishmentInfo(Integer punishmentId, String punishmentSituation, Timestamp punishmentTime, String idCard,
+			Integer psId, Integer caseId, CitizenInfo citizenInfo, PublicSecurity publicSecurity,
+			AcceptCase acceptCase) {
+		super();
+		this.punishmentId = punishmentId;
+		this.punishmentSituation = punishmentSituation;
+		this.punishmentTime = punishmentTime;
+		this.idCard = idCard;
+		this.psId = psId;
+		this.caseId = caseId;
+		this.citizenInfo = citizenInfo;
+		this.publicSecurity = publicSecurity;
+		this.acceptCase = acceptCase;
+	}
+
 	@Override
 	public String toString() {
 		return "PunishmentInfo [punishmentId=" + punishmentId + ", punishmentSituation=" + punishmentSituation
 				+ ", punishmentTime=" + punishmentTime + ", idCard=" + idCard + ", psId=" + psId + ", caseId=" + caseId
-				+ ", citizenInfo=" + citizenInfo + ", publicSecurity=" + publicSecurity + "]";
+				+ ", citizenInfo=" + citizenInfo + ", publicSecurity=" + publicSecurity + ", acceptCase=" + acceptCase
+				+ "]";
 	}
+
+	
 	
 
 }

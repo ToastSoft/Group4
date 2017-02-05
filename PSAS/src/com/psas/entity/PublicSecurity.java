@@ -70,4 +70,11 @@ public class PublicSecurity implements java.io.Serializable {
 		this.psLeaderName = psLeaderName;
 	}
 
+	@Override
+	public String toString() {
+		return "PublicSecurity [psId=" + psId + ", psName=" + psName + ", psTelephone=" + psTelephone + ", psAddress="
+				+ psAddress + ", psLeaderName=" + psLeaderName + "]";
+	}
+	
+
 }

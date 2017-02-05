@@ -1,10 +1,6 @@
 #1.数据库创建
 drop database IF EXISTS public_security;
 create database public_security;
-select * from user_info;
-select * from fine_info;
-select * from case_later;
-select * from criminal_report;
 use `public_security`;
 
 #2.用户信息
@@ -39,7 +35,6 @@ INSERT INTO `user_info` VALUES ('3', 'user03', '000000', '3', '李四', '2017-01
 # ----------------------------
 #
 DROP TABLE IF EXISTS `jurisdiction_info`;
-select * from jurisdiction_info;
 CREATE TABLE `jurisdiction_info` (
   `jurisdiction_id` int(11) NOT NULL AUTO_INCREMENT,
   `jurisdiction_name` varchar(20) NOT NULL,
@@ -60,7 +55,6 @@ INSERT INTO `jurisdiction_info` VALUES ('7', '文件上传/下载');
 # Table structure for user_jurisdiction_info
 # ----------------------------
 DROP TABLE IF EXISTS `user_jurisdiction_info`;
-select * from user_jurisdiction_info;
 CREATE TABLE `user_jurisdiction_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -91,7 +85,6 @@ left join jurisdiction_info ji on uji.jurisdiction_id=ji.jurisdiction_id;
 # Table structure for public_security
 # ----------------------------
 DROP TABLE IF EXISTS `public_security`;
-select * from public_security;
 CREATE TABLE `public_security` (
   `ps_id` int(11) NOT NULL AUTO_INCREMENT,
   `ps_name` varchar(20) NOT NULL,
@@ -113,7 +106,6 @@ INSERT INTO `public_security` VALUES ('5', '大连市开发区分区', '0411-800
 # Table structure for policeman_info
 # ----------------------------
 DROP TABLE IF EXISTS `policeman_info`;
-select * from policeman_info;
 CREATE TABLE `policeman_info` (
   `policeman_id` int(11) NOT NULL AUTO_INCREMENT,
   `policeman_name` varchar(20) NOT NULL,
@@ -384,7 +376,6 @@ INSERT INTO `civil_dispute` VALUES ('2', '鸠摩智', '电竞俱乐部', '2017-0
 # ----------------------------
 #
 DROP TABLE IF EXISTS `criminal_info`;
-select * from criminal_info;
 CREATE TABLE `criminal_info` (
   `criminal_id` int(11) NOT NULL AUTO_INCREMENT,
   `supply_info` varchar(500) NOT NULL,
@@ -426,8 +417,6 @@ INSERT INTO `security_info` VALUES ('2', '非法集会', '驱散', null, '14');
 # ----------------------------
 #
 DROP TABLE IF EXISTS `case_later`;
-select * from case_later;
-select * from accept_case;
 CREATE TABLE `case_later` (
   `case_later_id` int(11) NOT NULL AUTO_INCREMENT,
   `later_reason` varchar(500) NOT NULL,
@@ -445,7 +434,6 @@ INSERT INTO `case_later` VALUES ('2', '犯罪人有背景', '背后有人，不�
 # ----------------------------
 #
 DROP TABLE IF EXISTS `criminal_report`;
-select * from criminal_report;
 CREATE TABLE `criminal_report` (
   `criminal_report_id` int(11) NOT NULL AUTO_INCREMENT,
   `case_report` varchar(500) NOT NULL,
@@ -463,7 +451,6 @@ INSERT INTO `criminal_report` VALUES ('2', '刑事案件报告22', '2017-01-12 1
 # Table structure for fine_info
 # ----------------------------
 DROP TABLE IF EXISTS `fine_info`;
-select * from fine_info;
 CREATE TABLE `fine_info` (
   `fine_id` int(11) NOT NULL AUTO_INCREMENT,
   `fine_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -502,7 +489,6 @@ INSERT INTO `case_notify` VALUES ('2', '被告知人姓名2', '被告知人地�
 # Table structure for accept_case
 # ----------------------------
 DROP TABLE IF EXISTS `accept_case`;
-select * from accept_case;
 CREATE TABLE `accept_case` (
   `case_id` int(11) NOT NULL AUTO_INCREMENT,
   `case_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -539,7 +525,7 @@ CREATE TABLE `alarm_info` (
   `reception_policeman` int(11) NOT NULL,
   `handle_situation` varchar(500) NOT NULL,
   `handle_policeman` int(11) NOT NULL,
-  `loss_siuation` varchar(200) NOT NULL,
+  `loss_situation` varchar(200) NOT NULL,
   `death_number` int(11) NOT NULL,
   `injured_number` int(11) NOT NULL,
   `economic_loss` double NOT NULL,

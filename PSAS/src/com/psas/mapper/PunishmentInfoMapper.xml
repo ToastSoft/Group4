@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.psas.dao.UserInfoDao">
+<mapper namespace="com.psas.dao.PunishmentInfoDao">
 	<!-- 查找所有 -->
 	<select id="findAll" resultMap="userInfoRM">
 		select * from user_info;

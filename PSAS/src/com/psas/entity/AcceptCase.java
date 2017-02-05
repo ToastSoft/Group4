@@ -10,6 +10,7 @@ public class AcceptCase implements java.io.Serializable {
 
 	// Fields
 
+
 	private Integer caseId;
 	private Timestamp caseTime;
 	private String casePlace;

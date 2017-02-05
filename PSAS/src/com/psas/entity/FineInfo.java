@@ -6,8 +6,7 @@ import java.sql.Timestamp;
  * FineInfo entity. @author MyEclipse Persistence Tools
  */
 
-public class FineInfo implements java.io.Serializable {
-
+public class FineInfo implements java.io.Serializable { 
 	// Fields
 
 	private Integer fineId;
@@ -18,11 +17,19 @@ public class FineInfo implements java.io.Serializable {
 	private String idCard;
 	private Integer policemanId;
 	private Integer caseId;
+	/** default constructor */
+	public FineInfo() {
+	}
+	public FineInfo(Integer fineId) {
+		super();
+		this.fineId = fineId;
+	}
 
 	// Constructors
 
-	/** default constructor */
-	public FineInfo() {
+	public FineInfo(String idCard) {
+		super();
+		this.idCard = idCard;
 	}
 
 	/** full constructor */
@@ -36,70 +43,77 @@ public class FineInfo implements java.io.Serializable {
 		this.caseId = caseId;
 	}
 
+	public Integer getCaseId() {
+		return this.caseId;
+	}
+
 	// Property accessors
-
-	public Integer getFineId() {
-		return this.fineId;
-	}
-
-	public void setFineId(Integer fineId) {
-		this.fineId = fineId;
-	}
-
-	public Timestamp getFineTime() {
-		return this.fineTime;
-	}
-
-	public void setFineTime(Timestamp fineTime) {
-		this.fineTime = fineTime;
-	}
-
-	public Integer getFineType() {
-		return this.fineType;
-	}
-
-	public void setFineType(Integer fineType) {
-		this.fineType = fineType;
-	}
 
 	public String getFineCharacter() {
 		return this.fineCharacter;
 	}
 
-	public void setFineCharacter(String fineCharacter) {
-		this.fineCharacter = fineCharacter;
+	public Integer getFineId() {
+		return this.fineId;
 	}
 
 	public String getFineReason() {
 		return this.fineReason;
 	}
 
-	public void setFineReason(String fineReason) {
-		this.fineReason = fineReason;
+	public Timestamp getFineTime() {
+		return this.fineTime;
+	}
+
+	public Integer getFineType() {
+		return this.fineType;
 	}
 
 	public String getIdCard() {
 		return this.idCard;
 	}
 
-	public void setIdCard(String idCard) {
-		this.idCard = idCard;
-	}
-
 	public Integer getPolicemanId() {
 		return this.policemanId;
+	}
+
+	public void setCaseId(Integer caseId) {
+		this.caseId = caseId;
+	}
+
+	public void setFineCharacter(String fineCharacter) {
+		this.fineCharacter = fineCharacter;
+	}
+
+	public void setFineId(Integer fineId) {
+		this.fineId = fineId;
+	}
+
+	public void setFineReason(String fineReason) {
+		this.fineReason = fineReason;
+	}
+
+	public void setFineTime(Timestamp fineTime) {
+		this.fineTime = fineTime;
+	}
+
+	public void setFineType(Integer fineType) {
+		this.fineType = fineType;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
 
 	public void setPolicemanId(Integer policemanId) {
 		this.policemanId = policemanId;
 	}
 
-	public Integer getCaseId() {
-		return this.caseId;
-	}
-
-	public void setCaseId(Integer caseId) {
-		this.caseId = caseId;
+	@Override
+	public String toString() {
+		return "FineInfo [fineId=" + fineId + ", fineTime=" + fineTime + ", fineType=" + fineType + ", fineCharacter="
+				+ fineCharacter + ", fineReason=" + fineReason + ", idCard=" + idCard + ", policemanId=" + policemanId
+				+ ", caseId=" + caseId + "]";
 	}
 
 }

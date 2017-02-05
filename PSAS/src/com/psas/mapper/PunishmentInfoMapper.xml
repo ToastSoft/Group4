@@ -14,6 +14,8 @@
 			javaType="publicSecurity" select="findPublicSecurity"></association>
 	
 	</resultMap>
+	
+	
 </mapper>
 
 

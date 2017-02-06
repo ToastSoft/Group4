@@ -3,35 +3,35 @@ package com.psas.test;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.psas.dao.AlarmInfoDao;
 import com.psas.entity.AlarmInfo;
 import com.psas.entity.Page;
+import com.psas.service.AlarmInfoService;
 
-public class TestAlarmInfoDao {
+public class TestAlarmInfoService {
 	ClassPathXmlApplicationContext ac;
 	String conf="applicationContext.xml";
-	AlarmInfoDao dao;
+	AlarmInfoService service;
+	
+	static{
+		PropertyConfigurator.configure("log/log4j.properties");
+	}
 	
 	@Before
 	public void init(){
 		ac = new ClassPathXmlApplicationContext(conf);
-		dao = ac.getBean(AlarmInfoDao.BEAN_NAME,AlarmInfoDao.class);
+		service =  ac.getBean(AlarmInfoService.BEAN_NAME,AlarmInfoService.class);
 	}
 	
-	/**
-	 * 查找所有接处警信息DAO单元测试
-	 * @throw
-	 * @return void
-	 */
 	@Test
 	public void testFindAll(){
-		List<AlarmInfo> alarm = dao.findAll();
-		for (AlarmInfo a : alarm) {
-			System.out.println(a);
+		List<AlarmInfo> alarm = service.findAll();
+		for (AlarmInfo alarmInfo : alarm) {
+			System.out.println(alarmInfo);
 		}
 	}
 	
@@ -55,36 +55,34 @@ public class TestAlarmInfoDao {
 		alarm.setHandleResult(3);
 		alarm.setDutyLeader(2);
 		alarm.setAlarmAddress("开发区");
-		dao.add(alarm);
-		
+		service.add(alarm);
 	}
 	@Test
 	public void testUpdate(){
 		AlarmInfo alarm = new AlarmInfo(3);
 		alarm.setAlarmName("sss");
-		dao.update(alarm);	
+		service.update(alarm);
 	}
 	@Test
 	public void testDelete(){
 		AlarmInfo alarm = new AlarmInfo(4);
-		dao.delete(alarm);
+		service.delete(alarm);
 	}
 	@Test
-	public void testFindAlarm(){
+	public void testFindByPage(){
 		Page page = new Page(1);
-		List<AlarmInfo> alarms = dao.findAlarm(null, page);
+		List<AlarmInfo> alarms = service.findByPage(page);
 		for (AlarmInfo alarmInfo : alarms) {
 			System.out.println(alarmInfo);
 		}
 	}
 	@Test
-	public void testFindAlarm1(){
+	public void testFindById(){
 		AlarmInfo alarm = new AlarmInfo();
 		alarm.setAlarmId(1);
-		List<AlarmInfo> alarms = dao.findAlarm(alarm, null);
+		List<AlarmInfo> alarms = service.findById(alarm);
 		for (AlarmInfo alarmInfo : alarms) {
 			System.out.println(alarmInfo);
 		}
 	}
-	
 }

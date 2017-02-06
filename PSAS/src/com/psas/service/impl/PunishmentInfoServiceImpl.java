@@ -28,7 +28,7 @@ public class PunishmentInfoServiceImpl implements PunishmentInfoService {
 	/**
 	 * 查询所有用户信息service实现
 	 * 重载方法
-	 * @return
+	 * @return List<PunishmentInfo>
 	 */
 	@Override
 	public List<PunishmentInfo> findAll() {
@@ -69,7 +69,7 @@ public class PunishmentInfoServiceImpl implements PunishmentInfoService {
 	 * 根据用户id查找用户信息service实现
 	 * 重载方法
 	 * @param user
-	 * @return
+	 * @return PunishmentInfo
 	 */
 	@Override
 	public PunishmentInfo findUserById(PunishmentInfo punishment) {
@@ -84,7 +84,7 @@ public class PunishmentInfoServiceImpl implements PunishmentInfoService {
 	 * 分页查询用户信息service实现
 	 * 重载方法
 	 * @param page
-	 * @return
+	 * @return List<PunishmentInfo>
 	 */
 	@Override
 	public List<PunishmentInfo> findUserByPage(Page page) {

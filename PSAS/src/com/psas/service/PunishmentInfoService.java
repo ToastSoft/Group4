@@ -19,7 +19,7 @@ public interface PunishmentInfoService {
 	 * 查询所有用户信息service接口
 	 * @return
 	 * @throw
-	 * @return List<UserInfo>
+	 * @return List<PunishmentInfo>
 	 */
 	public List<PunishmentInfo> findAll();
 
@@ -52,7 +52,7 @@ public interface PunishmentInfoService {
 	 * @param user
 	 * @return
 	 * @throw
-	 * @return UserInfo
+	 * @return PunishmentInfo
 	 */
 	public PunishmentInfo findUserById(PunishmentInfo punishment);
 
@@ -61,7 +61,7 @@ public interface PunishmentInfoService {
 	 * @param page
 	 * @return
 	 * @throw
-	 * @return List<UserInfo>
+	 * @return List<PunishmentInfo>
 	 */
 	public List<PunishmentInfo> findUserByPage(Page page);
 

@@ -13,6 +13,8 @@ public class SecurityInfo implements java.io.Serializable {
 	private String securityResult;
 	private Integer fineId;
 	private Integer caseId;
+	private AcceptCase acceptCase;
+	private FineInfo fineInfo;
 
 	// Constructors
 
@@ -35,10 +37,40 @@ public class SecurityInfo implements java.io.Serializable {
 		this.caseId = caseId;
 	}
 
+
+
+	public SecurityInfo(Integer securityId, String supplyInfo, String securityResult, Integer fineId, Integer caseId,
+			AcceptCase acceptCase, FineInfo fineInfo) {
+		super();
+		this.securityId = securityId;
+		this.supplyInfo = supplyInfo;
+		this.securityResult = securityResult;
+		this.fineId = fineId;
+		this.caseId = caseId;
+		this.acceptCase = acceptCase;
+		this.fineInfo = fineInfo;
+	}
+
 	// Property accessors
 
 	public Integer getSecurityId() {
 		return this.securityId;
+	}
+
+	public FineInfo getFineInfo() {
+		return fineInfo;
+	}
+
+	public void setFineInfo(FineInfo fineInfo) {
+		this.fineInfo = fineInfo;
+	}
+
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
 	}
 
 	public void setSecurityId(Integer securityId) {
@@ -76,5 +108,15 @@ public class SecurityInfo implements java.io.Serializable {
 	public void setCaseId(Integer caseId) {
 		this.caseId = caseId;
 	}
+
+	@Override
+	public String toString() {
+		return "SecurityInfo [securityId=" + securityId + ", supplyInfo=" + supplyInfo + ", securityResult="
+				+ securityResult + ", fineId=" + fineId + ", caseId=" + caseId + ", acceptCase=" + acceptCase
+				+ ", fineInfo=" + fineInfo + "]";
+	}
+
+	
+	
 
 }

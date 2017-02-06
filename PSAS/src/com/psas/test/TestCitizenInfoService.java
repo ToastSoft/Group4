@@ -10,21 +10,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.psas.dao.CitizenInfoDao;
-import com.psas.dao.LogInfoDao;
 import com.psas.entity.CitizenInfo;
 import com.psas.entity.Page;
+import com.psas.service.CitizenInfoService;
 
 /**
- * 公民信息dao单元测试
+ * 公民信息service单元测试
  * @author  XulaiWang
- * @data:  2017年2月6日 上午10:07:58
+ * @data:  2017年2月6日 上午11:04:43
  * @version:  V1.0
  */
-public class TestCitizenInfoDao {
+public class TestCitizenInfoService {
 	ClassPathXmlApplicationContext ac;
 	String conf = "applicationContext.xml";
-	CitizenInfoDao dao;
+	CitizenInfoService service;
 
 	static {
 		PropertyConfigurator.configure("log/log4j.properties");
@@ -33,38 +32,25 @@ public class TestCitizenInfoDao {
 	@Before
 	public void init() {
 		ac = new ClassPathXmlApplicationContext(conf);
-		dao = ac.getBean(CitizenInfoDao.BEAN_NAME, CitizenInfoDao.class);
+		service = ac.getBean(CitizenInfoService.BEAN_NAME, CitizenInfoService.class);
 	}
 
 	/**
-	 * 查询所有公民信息dao单元测试
+	 * 查找所有公民信息service单元测试
 	 * 
 	 * @throw
 	 * @return void
 	 */
 	@Test
 	public void testFindAll() {
-		List<CitizenInfo> citizens = dao.findAll();
+		List<CitizenInfo> citizens = service.findAll();
 		for (CitizenInfo c : citizens) {
 			System.out.println(c);
 		}
 	}
 
 	/**
-	 * 删除公民信息dao单元测试
-	 * 
-	 * @throw
-	 * @return void
-	 */
-	@Test
-	public void testDelete() {
-		CitizenInfo citizenInfo = new CitizenInfo("210203199101311544");
-		dao.delete(citizenInfo);
-
-	}
-
-	/**
-	 * 增加公民信息dao单元测试
+	 * 增加公民信息service单元测试
 	 * @throws ParseException
 	 * @throw
 	 * @return void
@@ -76,12 +62,25 @@ public class TestCitizenInfoDao {
 		String str = new String("1991-01-31");
 		bir = sdf.parse(str);
 		System.out.println(bir);
-		CitizenInfo citizen = new CitizenInfo("210203199101311544", "王大", 22, "1", bir, "马栏河", "程序员", "yulinInfo", 1);
-		dao.add(citizen);
+		CitizenInfo citizen = new CitizenInfo("210203199101311234", "新民振", 22, "1", bir, "马栏河", "程序员", "yulinInfo", 1);
+		service.add(citizen);
 	}
 
 	/**
-	 * 修改公民信息dao单元测试
+	 * 删除公民信息service单元测试
+	 * 
+	 * @throw
+	 * @return void
+	 */
+	@Test
+	public void testDelete() {
+		String idCard = "210203199101311234";
+		CitizenInfo citizen = new CitizenInfo(idCard);
+		service.delete(citizen);
+	}
+
+	/**
+	 * 修改公民信息service单元测试
 	 * 
 	 * @throw
 	 * @return void
@@ -89,8 +88,8 @@ public class TestCitizenInfoDao {
 	@Test
 	public void testUpdate() {
 		CitizenInfo citizen = new CitizenInfo();
-		citizen.setIdCard("210203199101311544");
-		citizen.setIdName("王老六2");
+		citizen.setIdCard("210203199101311234");
+		citizen.setIdName("王老六5");
 		citizen.setIdAge(10);
 		citizen.setIdGender("0");
 		citizen.setIdBirthday(new Date());
@@ -98,58 +97,56 @@ public class TestCitizenInfoDao {
 		citizen.setIdProfessional("无业游民");
 		citizen.setIdCompany("没有");
 		citizen.setNationId(2);
-		dao.update(citizen);
+		service.update(citizen);
 	}
 
 	/**
-	 * 根据身份证查询公民信息dao单元测试
+	 * 根据身份证查找公民信息service单元测试
 	 * 
 	 * @throw
 	 * @return void
 	 */
 	@Test
 	public void testFindById() {
-		CitizenInfo citizenInfo = new CitizenInfo("210203199101311544");
-		List<CitizenInfo> citizen = dao.findCitizen(citizenInfo, null);
-		for (CitizenInfo c : citizen) {
-			System.out.println(c);
-		}
+		CitizenInfo citizen = new CitizenInfo("210203199101311234");
+		CitizenInfo citizenInfo = service.findById(citizen);
+		System.out.println(citizenInfo);
 	}
 
 	/**
-	 * 根据姓名查找公民信息dao单元测试
+	 * 根据姓名查找公民信息service单元测试
 	 * 
 	 * @throw
 	 * @return void
 	 */
 	@Test
-	public void testFindByName() {
-		CitizenInfo citizenInfo = new CitizenInfo();
-		citizenInfo.setIdName("王老六2");
-		List<CitizenInfo> citizen = dao.findCitizen(citizenInfo, null);
-		for (CitizenInfo c : citizen) {
+	public void testFindName() {
+		CitizenInfo citizen = new CitizenInfo();
+		citizen.setIdName("王老六5");
+		List<CitizenInfo> citizens = service.findByName(citizen);
+		for (CitizenInfo c : citizens) {
 			System.out.println(c);
 		}
 	}
 
 	/**
-	 * 根据民族查询公民信息dao单元测试
+	 * 根据民族查找公民信息service单元测试
 	 * 
 	 * @throw
 	 * @return void
 	 */
 	@Test
 	public void testFindByNation() {
-		CitizenInfo citizenInfo = new CitizenInfo();
-		citizenInfo.setNationId(16);
-		List<CitizenInfo> citizen = dao.findCitizen(citizenInfo, null);
-		for (CitizenInfo c : citizen) {
+		CitizenInfo citizen = new CitizenInfo();
+		citizen.setNationId(16);
+		List<CitizenInfo> citizens = service.findByNation(citizen);
+		for (CitizenInfo c : citizens) {
 			System.out.println(c);
 		}
 	}
 
 	/**
-	 * 分页查询公民信息dao单元测试
+	 * 分页查询公民信息service单元测试
 	 * 
 	 * @throw
 	 * @return void
@@ -157,11 +154,10 @@ public class TestCitizenInfoDao {
 	@Test
 	public void testFindByPage() {
 		Page page = new Page(2);
-		List<CitizenInfo> citizen = dao.findCitizen(null, page);
-		for (CitizenInfo c : citizen) {
+		List<CitizenInfo> citizens = service.findByPage(page);
+		for (CitizenInfo c : citizens) {
 			System.out.println(c);
 		}
-
 	}
 
 }

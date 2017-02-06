@@ -2,6 +2,8 @@ package com.psas.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.psas.entity.AlarmInfo;
 import com.psas.entity.Page;
 
@@ -52,6 +54,6 @@ public interface AlarmInfoDao {
 	 * @throw
 	 * @return void
 	 */
-	public void findAlarm(AlarmInfo alarm,Page page);
+	public List<AlarmInfo> findAlarm(@Param("alarm") AlarmInfo alarm,@Param("page") Page page);
 
 }

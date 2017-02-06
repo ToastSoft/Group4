@@ -14,7 +14,7 @@
 						  #{alarmAddress},#{alarmTime},#{alarmFormat},#{alarmContent},
 						  #{alarmCaseTime},#{alarmPlace},#{receptionPoliceman},
 						  #{handleSituation},#{handlePoliceman},#{lossSituation},
-						  #{deathNumber},#{injureNumber},#{economicLoss},#{handleResult},#{dutyLeader});
+						  #{deathNumber},#{injuredNumber},#{economicLoss},#{handleResult},#{dutyLeader});
 	</insert>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="alarmInfo">
@@ -23,7 +23,7 @@
 	</delete>
 	<!-- 修改 -->
 	<update id="update" parameterType="alarmInfo">
-		update log_info
+		update alarm_info
 		<trim prefix="set" prefixOverrides=",">
 			<if test="alarmName!=null">
 				,alarm_name=#{alarmName}
@@ -67,8 +67,8 @@
 			<if test="deathNumber!=null">
 				,death_number=#{deathNumber}
 			</if>
-			<if test="injureNumber!=null">
-				,injure_number=#{injureNumber}
+			<if test="injuredNumber!=null">
+				,injured_number=#{injuredNumber}
 			</if>
 			<if test="economicLoss!=null">
 				,economic_loss=#{economicLoss}
@@ -87,9 +87,8 @@
 		select * from alarm_info
 		<if test="alarm!=null">
 			<trim prefix="where" prefixOverrides="and">
-				<if test="alarmId!=null">and alarm_id=#{alarmId}</if> 
-				<if test="receptionPoliceman!=null">and reception_policeman=#{receptionPoliceman}</if> 
-				<if test="alarmTime!=null">and alarm_time=#{alarmTime}</if> 
+				<if test="alarm.alarmId!=null">and alarm_id=#{alarm.alarmId}</if> 
+				<if test="alarm.receptionPoliceman!=null">and reception_policeman=#{alarm.receptionPoliceman}</if> 
 			</trim>
 		</if>
 		<if test="page!=null">

@@ -35,6 +35,10 @@ public class AlarmInfo implements java.io.Serializable {
 	/** default constructor */
 	public AlarmInfo() {
 	}
+	
+	public AlarmInfo(Integer Id){
+		this.alarmId=Id;
+	}
 
 	/** minimal constructor */
 	public AlarmInfo(String alarmName, String alarmGender, String alarmTelephone, String alarmAddress, Timestamp alarmTime, Integer alarmFormat, String alarmContent, String alarmPlace,
@@ -235,6 +239,17 @@ public class AlarmInfo implements java.io.Serializable {
 
 	public void setDutyLeader(Integer dutyLeader) {
 		this.dutyLeader = dutyLeader;
+	}
+
+	@Override
+	public String toString() {
+		return "AlarmInfo [alarmId=" + alarmId + ", alarmName=" + alarmName + ", alarmGender=" + alarmGender
+				+ ", alarmTelephone=" + alarmTelephone + ", alarmAddress=" + alarmAddress + ", alarmTime=" + alarmTime
+				+ ", alarmFormat=" + alarmFormat + ", alarmContent=" + alarmContent + ", alarmCaseTime=" + alarmCaseTime
+				+ ", alarmPlace=" + alarmPlace + ", receptionPoliceman=" + receptionPoliceman + ", handleSituation="
+				+ handleSituation + ", handlePoliceman=" + handlePoliceman + ", lossSituation=" + lossSituation
+				+ ", deathNumber=" + deathNumber + ", injuredNumber=" + injuredNumber + ", economicLoss=" + economicLoss
+				+ ", handleResult=" + handleResult + ", dutyLeader=" + dutyLeader + "]";
 	}
 
 }

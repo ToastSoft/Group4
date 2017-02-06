@@ -17,8 +17,17 @@ public class HelpService implements java.io.Serializable {
 	private String alarmPlace;
 	private String helpContent;
 	private Integer alarmId;
+	private AlarmInfo alarmInfo;
 
 	// Constructors
+
+	public AlarmInfo getAlarmInfo() {
+		return alarmInfo;
+	}
+
+	public void setAlarmInfo(AlarmInfo alarmInfo) {
+		this.alarmInfo = alarmInfo;
+	}
 
 	/** default constructor */
 	public HelpService() {
@@ -32,6 +41,20 @@ public class HelpService implements java.io.Serializable {
 		this.alarmPlace = alarmPlace;
 		this.helpContent = helpContent;
 		this.alarmId = alarmId;
+	}
+	
+
+	public HelpService(Integer helpId, String helpName, String behelpName, Timestamp alarmTime, String alarmPlace,
+			String helpContent, Integer alarmId, AlarmInfo alarmInfo) {
+		super();
+		this.helpId = helpId;
+		this.helpName = helpName;
+		this.behelpName = behelpName;
+		this.alarmTime = alarmTime;
+		this.alarmPlace = alarmPlace;
+		this.helpContent = helpContent;
+		this.alarmId = alarmId;
+		this.alarmInfo = alarmInfo;
 	}
 
 	// Property accessors
@@ -91,5 +114,13 @@ public class HelpService implements java.io.Serializable {
 	public void setAlarmId(Integer alarmId) {
 		this.alarmId = alarmId;
 	}
+
+	@Override
+	public String toString() {
+		return "HelpService [helpId=" + helpId + ", helpName=" + helpName + ", behelpName=" + behelpName
+				+ ", alarmTime=" + alarmTime + ", alarmPlace=" + alarmPlace + ", helpContent=" + helpContent
+				+ ", alarmId=" + alarmId + ", alarmInfo=" + alarmInfo + "]";
+	}
+	
 
 }

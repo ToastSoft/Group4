@@ -21,6 +21,9 @@
 		<typeAlias type="com.psas.entity.CriminalReport" alias="criminal_Report"/>
 		<typeAlias type="com.psas.entity.CaseLater" alias="caseLater"/>
 		<typeAlias type="com.psas.entity.AcceptCase" alias="acceptCase"/>
+		<typeAlias type="com.psas.entity.SecurityInfo" alias="securityInfo"/>
+		<typeAlias type="com.psas.entity.CriminalInfo" alias="criminalInfo"/>
+		<typeAlias type="com.psas.entity.HelpService" alias="helpService"/>
 	</typeAliases>
 </configuration> 
 

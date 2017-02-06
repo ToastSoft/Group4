@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.psas.entity.CitizenInfo;
+import com.psas.entity.Page;
 
 /**
  * 公民信息dao 接口
@@ -48,11 +49,13 @@ public interface CitizenInfoDao {
 	public void update(@Param("citizen") CitizenInfo citizen);
 
 	/**
-	 * 根据公民身份证号查找公民信息
+	 * 根据公民条件查找公民信息
 	 * @param citizen
+	 * @param page
+	 * @return
 	 * @throw
-	 * @return void
+	 * @return List<CitizenInfo>
 	 */
-	public void findById(@Param("citizen") CitizenInfo citizen);
+	public List<CitizenInfo> findCitizen(@Param("citizen") CitizenInfo citizen, @Param("page") Page page);
 
 }

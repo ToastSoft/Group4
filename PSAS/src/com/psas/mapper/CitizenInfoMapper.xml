@@ -29,9 +29,56 @@
 		id_card=#{citizen.idCard}
 	</delete>
 	<!-- 修改 -->
-
-
-
+	<update id="update" parameterType="citizenInfo">
+		update citizen_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="citizen.idName!=null">
+				,id_name=#{citizen.idName}
+			</if>
+			<if test="citizen.idAge!=null">
+				,id_age=#{citizen.idAge}
+			</if>
+			<if test="citizen.idGender!=null">
+				,id_gender=#{citizen.idGender}
+			</if>
+			<if test="citizen.idBirthday!=null">
+				,id_birthday=#{citizen.idBirthday}
+			</if>
+			<if test="citizen.idAddress!=null">
+				,id_address=#{citizen.idAddress}
+			</if>
+			<if test="citizen.idProfessional!=null">
+				,id_professional=#{citizen.idProfessional}
+			</if>
+			<if test="citizen.idCompany!=null">
+				,id_company=#{citizen.idCompany}
+			</if>
+			<if test="citizen.nationId">
+				,nation_id=#{citizen.nationId}
+			</if>
+		</trim>
+		where id_card=#{citizen.idCard}
+	</update>
+	<!-- 根据条件查找 -->
+	<select id="findCitizen" resultType="citizenInfo">
+		select * from citizen_info
+		<if test="citizen!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="citizen.idCard!=null">
+					and id_card=#{citizen.idCard}
+				</if>
+				<if test="citizen.idName!=null">
+					and id_name=#{citizen.idName}
+				</if>
+				<if test="citizen.nationId!=null">
+					and nation_id=#{citizen.nationId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
 </mapper>
 
 

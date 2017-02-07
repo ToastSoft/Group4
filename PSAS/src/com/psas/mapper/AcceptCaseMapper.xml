@@ -51,10 +51,10 @@
 	<!-- 按条件查询 -->
 	<select id="findCase" resultType="acceptCase">
 		select * from accept_case
-		<if test="case!=null">
+		<if test="acceptCase!=null">
 			<trim prefix="where" prefixOverrides="and">
-				<if test="case.caseId!=null">and case_id=#{caseId}</if>
-				<if test="case.psId!=null">and ps_id=#{psId}</if>
+				<if test="acceptCase.caseId!=null">and case_id=#{acceptCase.caseId}</if>
+				<if test="acceptCase.psId!=null">and ps_id=#{acceptCase.psId}</if>
 			</trim>
 		</if>
 		<if test="page!=null">

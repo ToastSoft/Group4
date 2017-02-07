@@ -44,5 +44,5 @@ public interface AcceptCaseDao {
 	 * @throw
 	 * @return void
 	 */
-	public List<AcceptCase> findCase(@Param("acceptCase")AcceptCase acceptCase,@Param("page")Page page);
+	public List<AcceptCase> findCase(@Param("acceptCase") AcceptCase acceptCase,@Param("page") Page page);
 }

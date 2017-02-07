@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.SuspectInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="suspectInfoRM">
+		select * from suspect_info;
+	</select>
+	<select id="findAcceptCase" parameterType="int"
+		resultType="acceptCase">
+		select * from accept_case where
+		case_id=#{caseId}
+	</select>
+	<select id="findCitizenInfo" parameterType="string" resultType="citizenInfo">
+		select * from citizen_info where
+		id_card=#{idCard}
+	</select>
+	<resultMap type="suspectInfo" id="suspectInfoRM">
+		<id column="case_id" property="caseId" />
+		<id column="id_card" property="idCard" />
+		<association property="acceptCase" column="case_id"
+			javaType="acceptCase" select="findAcceptCase"></association>
+		<association property="citizenInfo" column="id_card"
+			javaType="citizenInfo" select="findCitizenInfo"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="suspectInfo">
+		insert into
+		suspect_info(suspect_inttime,suspect_outtime,handle_condition,id_card,case_id)
+		values(#{suspectInfo.suspectInttime},#{suspectInfo.suspectOuttime},#{suspectInfo.handleCondition},#{suspectInfo.idCard},#{suspectInfo.caseId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="suspectInfo">
+		delete from suspect_info where suspect_id=#{suspectInfo.suspectId};
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="suspectInfo">
+		update suspect_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="suspectInfo.suspectInttime!=null">
+				,suspect_inttime=#{suspectInfo.suspectInttime}
+			</if>
+			<if test="suspectInfo.suspectOuttime!=null">
+				,suspect_outtime=#{suspectInfo.suspectOuttime}
+			</if>
+			<if test="suspectInfo.handleCondition!=null">
+				,handle_condition=#{suspectInfo.handleCondition}
+			</if>
+			<if test="suspectInfo.idCard!=null">
+				,id_card=#{suspectInfo.idCard}
+			</if>
+			<if test="suspectInfo.caseId">
+				,case_id=#{suspectInfo.caseId}
+			</if>
+			
+		</trim>
+		where suspect_id=#{suspectInfo.suspectId};
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="suspectInfoRM">
+		select * from suspect_info
+		<if test="suspectInfo!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="suspectInfo.suspectId!=null">
+					suspect_id=#{suspectInfo.suspectId}
+				</if>
+				<if test="suspectInfo.idCard!=null">
+					and id_card=#{suspectInfo.idCard}
+				</if>
+				<if test="suspectInfo.caseId!=null">
+					and case_id=#{suspectInfo.caseId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

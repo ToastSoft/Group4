@@ -8,32 +8,30 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.psas.dao.AcceptCaseDao;
 import com.psas.entity.AcceptCase;
 import com.psas.entity.Page;
+import com.psas.service.AcceptCaseService;
 
-
-public class TestAcceptCaseDao {
+public class TestAcceptCaseService {
 	ClassPathXmlApplicationContext ac;
-	String conf = "applicationContext.xml";
-	AcceptCaseDao dao;
-
-	static {
+	String conf="applicationContext.xml";
+	AcceptCaseService service;
+	
+	static{
 		PropertyConfigurator.configure("log/log4j.properties");
 	}
-
+	
 	@Before
-	public void init() {
+	public void init(){
 		ac = new ClassPathXmlApplicationContext(conf);
-		dao = ac.getBean(AcceptCaseDao.BEAN_NAME,AcceptCaseDao.class);
+		service = ac.getBean(AcceptCaseService.BEAN_NAME,AcceptCaseService.class);
 	}
 	@Test
 	public void testFindAll(){
-		List<AcceptCase> cl=dao.findAll();
-		for (AcceptCase acceptCase : cl) {
+		List<AcceptCase> acceptCases = service.findAll();
+		for (AcceptCase acceptCase : acceptCases) {
 			System.out.println(acceptCase);
 		}
-		
 	}
 	@Test
 	public void testAdd(){
@@ -46,18 +44,18 @@ public class TestAcceptCaseDao {
 		acceptCase.setPolicemanId(2);
 		acceptCase.setPsId(2);
 		acceptCase.setAlarmId(2);
-		dao.add(acceptCase);
+		service.add(acceptCase);
 	}
 	@Test
 	public void testDelete(){
 		AcceptCase acceptCase = new AcceptCase();
 		acceptCase.setCaseId(3);
-		dao.delete(acceptCase);
+		service.delete(acceptCase);
 	}
 	@Test
 	public void testFindCase(){
 		Page page = new Page(1);
-		List<AcceptCase> acceptCase = dao.findCase(null, page);
+		List<AcceptCase> acceptCase = service.findByPage(page);
 		for (AcceptCase acceptCase2 : acceptCase) {
 			System.out.println(acceptCase2);
 		}
@@ -66,10 +64,9 @@ public class TestAcceptCaseDao {
 	public void testFindCase1(){
 		AcceptCase acceptCase = new AcceptCase();
 		acceptCase.setCaseId(1);
-		List<AcceptCase> acceptCases = dao.findCase(acceptCase, null);
+		List<AcceptCase> acceptCases = service.findById(acceptCase);
 		for (AcceptCase acceptCase2 : acceptCases) {
 			System.out.println(acceptCase2);
 		}
 	}
-
 }

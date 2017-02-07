@@ -7,5 +7,58 @@
 	<select id="findAll" resultType="acceptCase">
 		select * from accept_case
 	</select>
-
+	<!-- 增加 -->
+	<insert id="add" parameterType="acceptCase">
+		insert into 
+		accept_case values(#{caseId},#{caseTime},#{casePlace},#{placeCaseTime},
+						   #{caseName},#{deptId},#{policemanId},#{psId},#{alarmId});
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="acceptCase">
+		delete from accept_case where case_id=#{caseId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="acceptCase">
+		update accept_case
+		<trim prefix="set" prefixOverrides=",">
+			<if test="caseTime!=null">
+				,case_time=#{caseTime}
+			</if>
+			<if test="casePlace!=null">
+				,case_place=#{casePlace}
+			</if>
+			<if test="placeCaseTime!=null">
+				,place_case_time=#{placeCaseTime}
+			</if>
+			<if test="caseName!=null">
+				,case_name=#{caseName}
+			</if>
+			<if test="deptId!=null">
+				,dept_id=#{deptId}
+			</if>
+			<if test="policemanId!=null">
+				,policeman_id=#{policemanId}
+			</if>
+			<if test="psId!=null">
+				,ps_id=#{psId}
+			</if>
+			<if test="alarmId!=null">
+				,alarm_id=#{alarmId}
+			</if>
+		</trim>
+		where case_id=#{caseId}
+	</update>
+	<!-- 按条件查询 -->
+	<select id="findCase" resultType="acceptCase">
+		select * from accept_case
+		<if test="acceptCase!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="acceptCase.caseId!=null">and case_id=#{acceptCase.caseId}</if>
+				<if test="acceptCase.psId!=null">and ps_id=#{acceptCase.psId}</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
 </mapper>

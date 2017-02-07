@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.OtherCaseDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="otherCaseRM">
+		select * from other_case;
+	</select>
+	<select id="findAlarmInfo" parameterType="int" resultType="alarmInfo">
+		select * from alarm_info where alarm_id=#{alarmId}
+	</select>
+	<resultMap type="otherCase" id="otherCaseRM">
+		<id column="alarm_id" property="alarmId"></id>
+		<association property="alarmInfo"  column="alarm_id"
+			javaType="alarmInfo" select="findAlarmInfo"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="otherCase">
+		insert into
+		other_case(other_content,other_handle,alarm_time,alarm_place,other_result,alarm_id)
+		values(#{otherCase.otherContent},#{otherCase.otherHandle},#{otherCase.alarmTime},#{otherCase.alarmPlace},#{otherCase.otherResult},#{otherCase.alarmId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="otherCase">
+		delete from other_case where other_id=#{otherCase.otherId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="otherCase">
+		update other_case
+		<trim prefix="set" prefixOverrides=",">
+			<if test="otherCase.otherContent!=null">
+				,other_content=#{otherCase.otherContent}
+			</if>
+			<if test="otherCase.otherHandle!=null">
+				,other_handle=#{otherCase.otherHandle}
+			</if>
+			<if test="otherCase.alarmTime!=null">
+				,alarm_time=#{otherCase.alarmTime}
+			</if>
+			<if test="otherCase.alarmPlace!=null">
+				,alarm_place=#{otherCase.alarmPlace}
+			</if>
+			<if test="otherCase.otherResult!=null">
+				,other_result=#{otherCase.otherResult}
+			</if>
+			<if test="otherCase.alarmId!=null">
+				,alarm_id=#{otherCase.alarmId}
+			</if>
+			
+		</trim>
+		where
+		other_id=#{otherCase.otherId}
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="otherCaseRM">
+		select * from other_case
+		<if test="otherCase!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="otherCase.otherId!=null">
+					other_id=#{otherCase.otherId}
+				</if>
+				<if test="otherCase.alarmId!=null">
+					and alarm_id=#{otherCase.alarmId}
+				</if>
+				
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

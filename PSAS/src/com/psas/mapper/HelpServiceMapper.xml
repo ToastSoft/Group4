@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.HelpServiceDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="helpServiceRM">
+		select * from help_service;
+	</select>
+	<select id="findAlarmInfo" parameterType="int" resultType="alarmInfo">
+		select * from alarm_info where alarm_id=#{alarmId}
+	</select>
+	<resultMap type="helpService" id="helpServiceRM">
+		<id column="alarm_id" property="alarmId"></id>
+		<association property="alarmInfo"  column="alarm_id"
+			javaType="alarmInfo" select="findAlarmInfo"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="helpService">
+		insert into
+		help_service(help_name,behelp_name,alarm_time,alarm_place,help_content,alarm_id)
+		values(#{helpService.helpName},#{helpService.behelpName},#{helpService.alarmTime},#{helpService.alarmPlace},#{helpService.helpContent},#{helpService.alarmId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="helpService">
+		delete from help_service
+		where
+		help_id=#{helpService.helpId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="helpService">
+		update help_service
+		<trim prefix="set" prefixOverrides=",">
+			<if test="helpService.helpName!=null">
+				,help_name=#{helpService.helpName}
+			</if>
+			<if test="helpService.behelpName!=null">
+				,behelp_name=#{helpService.behelpName}
+			</if>
+			<if test="helpService.alarmTime!=null">
+				,alarm_time=#{helpService.alarmTime}
+			</if>
+			<if test="helpService.alarmPlace!=null">
+				,alarm_place=#{helpService.alarmPlace}
+			</if>
+			<if test="helpService.helpContent!=null">
+				,help_content=#{helpService.helpContent}
+			</if>
+			<if test="helpService.alarmId!=null">
+				,alarm_id=#{helpService.alarmId}
+			</if>
+		</trim>
+		where help_id=#{helpService.helpId}
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="helpServiceRM">
+		select * from help_service
+		<if test="helpService!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="helpService.alarmId!=null">
+					alarm_id=#{helpService.alarmId}
+				</if>
+				<if test="helpService.helpName!=null">
+					and help_name=#{helpService.helpName}
+				</if>
+				<if test="helpService.helpId!=null">
+					help_id=#{helpService.helpId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

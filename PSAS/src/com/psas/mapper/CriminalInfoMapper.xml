@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.CriminalInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="criminalInfoRM">
+		select * from criminal_info;
+	</select>
+	<select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<resultMap type="criminalInfo" id="criminalInfoRM">
+		<id column="case_id" property="caseId"></id>
+		<association property="acceptCase"  column="case_id"
+			javaType="acceptCase" select="findAcceptCase"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="criminalInfo">
+		insert into
+		criminal_info(supply_info,criminal_situation,case_supply,criminal_result,case_id)
+		values(#{criminal.supplyInfo},#{criminal.criminalSituation},#{criminal.caseSupply},#{criminal.criminalResult},#{criminal.caseId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="criminalInfo">
+		delete from criminal_info
+		where
+		criminal_id=#{criminal.criminalId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="criminalInfo">
+		update criminal_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="criminal.supplyInfo!=null">
+				,supply_info=#{criminal.supplyInfo}
+			</if>
+			<if test="criminal.criminalSituation!=null">
+				,criminal_situation=#{criminal.criminalSituation}
+			</if>
+			<if test="criminal.caseSupply!=null">
+				,case_supply=#{criminal.caseSupply}
+			</if>
+			<if test="criminal.criminalResult!=null">
+				,criminal_result=#{criminal.criminalResult}
+			</if>
+			<if test="criminal.caseId!=null">
+				,case_id=#{criminal.caseId}
+			</if>
+			
+		</trim>
+		where
+		criminal_id=#{criminal.criminalId}
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="criminalInfoRM">
+		select * from criminal_info
+		<if test="criminal!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="criminal.criminalId!=null">
+					criminal_id=#{criminal.criminalId}
+				</if>
+				<if test="criminal.caseId!=null">
+					and case_id=#{criminal.caseId}
+				</if>
+				
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

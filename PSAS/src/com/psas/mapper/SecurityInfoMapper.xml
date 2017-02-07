@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.SecurityInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="securityInfoRM">
+		select * from security_info;
+	</select>
+	<select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<select id="findFineInfo" parameterType="int" resultType="fineInfo">
+		select * from fine_info where fine_id=#{fineId}
+	</select>
+	<resultMap type="securityInfo" id="securityInfoRM">
+		<id column="case_id" property="caseId"></id>
+		<id column="fine_id" property="fineId"></id>
+		<association property="acceptCase"  column="case_id"
+			javaType="acceptCase" select="findAcceptCase"></association>
+		<association property="fineInfo"  column="fine_id"
+			javaType="fineInfo" select="findFineInfo"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="securityInfo">
+		insert into
+		security_info(supply_info,security_result,fine_id,case_id)
+		values(#{security.supplyInfo},#{security.securityResult},#{security.fineId},#{security.caseId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="securityInfo">
+		delete from security_info
+		where
+		security_id=#{security.securityId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="securityInfo">
+		update security_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="security.supplyInfo!=null">
+				,supply_info=#{security.supplyInfo}
+			</if>
+			<if test="security.securityResult!=null">
+				,security_result=#{security.securityResult}
+			</if>
+			<if test="security.fineId!=null">
+				,fine_id=#{security.fineId}
+			</if>
+			<if test="security.caseId">
+				,case_id=#{security.caseId}
+			</if>
+		</trim>
+		where
+		security_id=#{security.securityId}
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="securityInfoRM">
+		select * from security_info
+		<if test="security!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="security.securityId!=null">
+					 and security_id=#{security.securityId}
+				</if>
+				<if test="security.fineId!=null">
+					and fine_id=#{security.fineId}
+				</if>
+				<if test="security.caseId!=null">
+					and case_id=#{security.caseId}
+				</if>
+				
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

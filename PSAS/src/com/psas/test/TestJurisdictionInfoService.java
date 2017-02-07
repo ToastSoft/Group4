@@ -25,13 +25,23 @@ public class TestJurisdictionInfoService {
 		ac = new ClassPathXmlApplicationContext(conf);
 		service = ac.getBean(JurisdictionInfoService.BEAN_NAME, JurisdictionInfoService.class);
 	}
-	
+
 	@Test
-	public void testFindAll(){
+	public void testFindAll() {
 		List<JurisdictionInfo> jurisdictions = service.findAll();
 		for (JurisdictionInfo jurisdictionInfo : jurisdictions) {
-			
+			System.out.println(jurisdictionInfo);
 		}
-		
 	}
+	
+	
 }
+
+
+
+
+
+
+
+
+

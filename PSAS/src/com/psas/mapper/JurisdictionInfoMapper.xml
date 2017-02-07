@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.JurisdictionInfoDao">
+	<!-- 查询所有 -->
+	<select id="findAll" resultType="jurisdictionInfo">
+		select * from jurisdiction_info
+	</select>
+	<!-- 增加 -->
+	<insert id="add" parameterType="jurisdictionInfo">
+		insert into
+		jurisdiction_info(jurisdiction_name)
+		values(#{jurisdiction.jurisdictionName})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="jurisdictionInfo">
+		delete from jurisdiction_info
+		where
+		jurisdiction_id=#{jurisdiction.jurisdictionId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="jurisdictionInfo">
+		update jurisdiction_info set
+		jurisdiction_name=#{jurisdiction.jurisdictionName}
+		where
+		jurisdiction_id=#{jurisdiction.jurisdictionId}
+	</update>
+	<!-- 根据id查找 -->
+	<select id="findById" parameterType="jurisdictionInfo" resultType="jurisdictionInfo">
+		select * from
+		jurisdiction_info where
+		jurisdiction_id=#{jurisdiction.jurisdictionId}
+	</select>
+</mapper>

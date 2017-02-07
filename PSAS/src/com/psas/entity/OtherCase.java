@@ -17,6 +17,7 @@ public class OtherCase implements java.io.Serializable {
 	private String alarmPlace;
 	private String otherResult;
 	private Integer alarmId;
+	private AlarmInfo alarmInfo;
 
 	// Constructors
 
@@ -35,6 +36,27 @@ public class OtherCase implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	public OtherCase(Integer otherId, String otherContent, String otherHandle, Timestamp alarmTime, String alarmPlace,
+			String otherResult, Integer alarmId, AlarmInfo alarmInfo) {
+		super();
+		this.otherId = otherId;
+		this.otherContent = otherContent;
+		this.otherHandle = otherHandle;
+		this.alarmTime = alarmTime;
+		this.alarmPlace = alarmPlace;
+		this.otherResult = otherResult;
+		this.alarmId = alarmId;
+		this.alarmInfo = alarmInfo;
+	}
+
+	public AlarmInfo getAlarmInfo() {
+		return alarmInfo;
+	}
+
+	public void setAlarmInfo(AlarmInfo alarmInfo) {
+		this.alarmInfo = alarmInfo;
+	}
 
 	public Integer getOtherId() {
 		return this.otherId;
@@ -91,5 +113,13 @@ public class OtherCase implements java.io.Serializable {
 	public void setAlarmId(Integer alarmId) {
 		this.alarmId = alarmId;
 	}
+
+	@Override
+	public String toString() {
+		return "OtherCase [otherId=" + otherId + ", otherContent=" + otherContent + ", otherHandle=" + otherHandle
+				+ ", alarmTime=" + alarmTime + ", alarmPlace=" + alarmPlace + ", otherResult=" + otherResult
+				+ ", alarmId=" + alarmId + ", alarmInfo=" + alarmInfo + "]";
+	}
+	
 
 }

@@ -28,6 +28,7 @@
 		<typeAlias type="com.psas.entity.JurisdictionInfo" alias="jurisdictionInfo"/>
 		<typeAlias type="com.psas.entity.OtherCase" alias="otherCase"/>
 		<typeAlias type="com.psas.entity.SuspectInfo" alias="suspectInfo"/>
+
 	</typeAliases>
 </configuration> 
 

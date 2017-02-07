@@ -5,7 +5,7 @@
 <mapper namespace="com.psas.dao.UserInfoDao">
 	<!-- 查找所有 -->
 	<select id="findAll" resultMap="userInfoRM">
-		select * from user_info;
+		select * from user_info
 	</select>
 	<select id="findJurisdictionInfo" parameterType="int"
 		resultType="jurisdictionInfo">
@@ -18,11 +18,9 @@
 	</select>
 	<resultMap type="userJurisdictionInfo" id="userJurisdictionInfoRM">
 		<id column="user_id" property="userId" />
-
 		<id column="jurisdiction_id" property="jurisdictionId" />
 		<association property="jurisdictionInfo" column="jurisdiction_id"
 			javaType="jurisdictionInfo" select="findJurisdictionInfo"></association>
-
 	</resultMap>
 	<select id="findUserJurisdictionInfo" parameterType="int"
 		resultMap="userJurisdictionInfoRM">

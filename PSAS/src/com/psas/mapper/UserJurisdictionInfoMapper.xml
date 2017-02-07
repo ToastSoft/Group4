@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.UserJurisdictionInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="ujRM">
+		select * from
+		user_jurisdiction_info
+	</select>
+	<resultMap type="userJurisdictionInfo" id="ujRM">
+		<id column="user_id" property="userId" />
+		<id column="jurisdiction_id" property="jurisdictionId" />
+		<association property="jurisdictionInfo" column="jurisdiction_id"
+			javaType="jurisdictionInfo" select="findJurisdictionInfo"></association>
+	</resultMap>
+	<select id="findJurisdictionInfo" parameterType="int"
+		resultType="jurisdictionInfo">
+		select * from jurisdiction_info where
+		jurisdiction_id=#{jurisdictionId}
+	</select>
+	<!-- 增加 -->
+	<insert id="add" parameterType="userJurisdictionInfo">
+		insert into
+		user_jurisdiction_info(user_id,jurisdiction_id)
+		values(#{userJurisdiction.userId},#{userJurisdiction.jurisdictionId})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="userJurisdictionInfo">
+		delete from user_jurisdiction_info
+		<trim prefix="where" prefixOverrides="and">
+			<if test="userJurisdiction.id!=null">
+				and id=#{userJurisdiction.id}
+			</if>
+			<if test="userJurisdiction.userId!=null">
+				and user_id=#{userJurisdiction.userId}
+			</if>
+			<if test="userJurisdiction.jurisdictionId!=null">
+				and jurisdiction_id=#{userJurisdiction.jurisdictionId}
+			</if>
+		</trim>
+	</delete>
+	<!-- 按条件查询 -->
+	<select id="findUserJurisdictionInfo" parameterType="userJurisdictionInfo"
+		resultMap="ujRM">
+		select * from user_jurisdiction_info
+		<trim prefix="where" prefixOverrides="and">
+			<if test="userJurisdiction.id!=null">
+				and id=#{userJurisdiction.id}
+			</if>
+			<if test="userJurisdiction.userId!=null">
+				and user_id=#{userJurisdiction.userId}
+			</if>
+			<if test="userJurisdiction.jurisdictionId!=null">
+				and jurisdiction_id=#{userJurisdiction.jurisdictionId}
+			</if>
+		</trim>
+	</select>
+
+
+</mapper>

@@ -128,16 +128,6 @@ public class UserInfo implements java.io.Serializable {
 		this.userStatus = userStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "UserInfo [userId=" + userId + ", loginName=" + loginName + ", loginPassword=" + loginPassword
-				+ ", policeId=" + policeId + ", policeName=" + policeName + ", createTime=" + createTime
-				+ ", deleteTime=" + deleteTime + ", userStatus=" + userStatus + ", userJurisdictionInfo="
-				+ userJurisdictionInfo + ", policemanInfo=" + policemanInfo + "]";
-	}
-
-
-
 	public List<UserJurisdictionInfo> getUserJurisdictionInfo() {
 		return userJurisdictionInfo;
 	}
@@ -152,6 +142,14 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setPolicemanInfo(PolicemanInfo policemanInfo) {
 		this.policemanInfo = policemanInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "UserInfo [userId=" + userId + ", loginName=" + loginName + ", loginPassword=" + loginPassword
+				+ ", policeId=" + policeId + ", policeName=" + policeName + ", createTime=" + createTime
+				+ ", deleteTime=" + deleteTime + ", userStatus=" + userStatus + ", userJurisdictionInfo="
+				+ userJurisdictionInfo + ", policemanInfo=" + policemanInfo + "]";
 	}
 
 

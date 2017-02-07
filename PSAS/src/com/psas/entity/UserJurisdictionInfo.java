@@ -1,7 +1,5 @@
 package com.psas.entity;
 
-import java.util.List;
-
 /**
  * UserJurisdictionInfo entity. @author MyEclipse Persistence Tools
  */
@@ -21,13 +19,12 @@ public class UserJurisdictionInfo implements java.io.Serializable {
 	public UserJurisdictionInfo() {
 	}
 
-	/** full constructor */
-	public UserJurisdictionInfo(Integer userId, Integer jurisdictionId) {
-		this.userId = userId;
-		this.jurisdictionId = jurisdictionId;
-	}
-
 	// Property accessors
+
+	public UserJurisdictionInfo(Integer id) {
+		super();
+		this.id = id;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -66,6 +63,5 @@ public class UserJurisdictionInfo implements java.io.Serializable {
 	public void setJurisdictionInfo(JurisdictionInfo jurisdictionInfo) {
 		this.jurisdictionInfo = jurisdictionInfo;
 	}
-
 
 }

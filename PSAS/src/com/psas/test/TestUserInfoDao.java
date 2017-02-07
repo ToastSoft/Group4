@@ -67,7 +67,7 @@ public class TestUserInfoDao {
 	 */
 	@Test
 	public void testDelete() {
-		UserInfo user = new UserInfo(7);
+		UserInfo user = new UserInfo(15);
 		dao.delete(user);
 
 	}

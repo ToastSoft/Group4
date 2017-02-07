@@ -25,7 +25,6 @@
 		<typeAlias type="com.psas.entity.CriminalInfo" alias="criminalInfo"/>
 		<typeAlias type="com.psas.entity.HelpService" alias="helpService"/>
 		<typeAlias type="com.psas.entity.CivilDispute" alias="civilDispute"/>
-		<typeAlias type="com.psas.entity.JurisdictionInfo" alias="jurisdictionInfo"/>
 	</typeAliases>
 </configuration> 
 

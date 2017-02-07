@@ -18,6 +18,7 @@ public class CivilDispute implements java.io.Serializable {
 	private String civilReason;
 	private String civilResult;
 	private Integer caseId;
+	private AcceptCase acceptCase;
 
 	// Constructors
 
@@ -35,8 +36,32 @@ public class CivilDispute implements java.io.Serializable {
 		this.civilResult = civilResult;
 		this.caseId = caseId;
 	}
+	
 
 	// Property accessors
+
+	public CivilDispute(Integer civilDispute, String firstParty, String secondParty, Timestamp alarmTime,
+			String alarmPlace, String civilReason, String civilResult, Integer caseId, AcceptCase acceptCase) {
+		super();
+		this.civilDispute = civilDispute;
+		this.firstParty = firstParty;
+		this.secondParty = secondParty;
+		this.alarmTime = alarmTime;
+		this.alarmPlace = alarmPlace;
+		this.civilReason = civilReason;
+		this.civilResult = civilResult;
+		this.caseId = caseId;
+		this.acceptCase = acceptCase;
+	}
+
+	
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
 
 	public Integer getCivilDispute() {
 		return this.civilDispute;
@@ -101,5 +126,14 @@ public class CivilDispute implements java.io.Serializable {
 	public void setCaseId(Integer caseId) {
 		this.caseId = caseId;
 	}
+
+	@Override
+	public String toString() {
+		return "CivilDispute [civilDispute=" + civilDispute + ", firstParty=" + firstParty + ", secondParty="
+				+ secondParty + ", alarmTime=" + alarmTime + ", alarmPlace=" + alarmPlace + ", civilReason="
+				+ civilReason + ", civilResult=" + civilResult + ", caseId=" + caseId + ", acceptCase=" + acceptCase
+				+ "]";
+	}
+	
 
 }

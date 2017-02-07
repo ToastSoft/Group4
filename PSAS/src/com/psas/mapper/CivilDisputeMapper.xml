@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.CivilDisputeDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="civilDisputeRM">
+		select * from civil_dispute;
+	</select>
+	<select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<resultMap type="civilDispute" id="civilDisputeRM">
+		<id column="case_id" property="caseId"></id>
+		<association property="acceptCase"  column="case_id"
+			javaType="acceptCase" select="findAcceptCase"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="civilDispute">
+		insert into
+		civil_dispute(first_party,second_party,alarm_time,alarm_place,civil_reason,civil_result,case_id)
+		values(#{civilDispute.firstParty},#{civilDispute.secondParty},#{civilDispute.alarmTime},#{civilDispute.alarmPlace},#{civilDispute.civilReason},#{civilDispute.civilResult},#{civilDispute.caseId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="civilDispute">
+		delete from civil_dispute where civil_dispute=#{civilDispute.civilDispute};
+	
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="civilDispute">
+		update civil_dispute
+		<trim prefix="set" prefixOverrides=",">
+			<if test="civilDispute.firstParty!=null">
+				,first_party=#{civilDispute.firstParty}
+			</if>
+			<if test="civilDispute.secondParty!=null">
+				,second_party=#{civilDispute.secondParty}
+			</if>
+			<if test="civilDispute.alarmTime!=null">
+				,alarm_time=#{civilDispute.alarmTime}
+			</if>
+			<if test="civilDispute.alarmPlace!=null">
+				,alarm_place=#{civilDispute.alarmPlace}
+			</if>
+			<if test="civilDispute.civilReason">
+				,civil_reason=#{civilDispute.civilReason}
+			</if>
+			<if test="civilDispute.civilResult!=null">
+				,civil_result=#{civilDispute.civilResult}
+			</if>
+			<if test="civilDispute.caseId!=null">
+				,case_id=#{civilDispute.caseId}
+			</if>
+		</trim>
+		where civil_dispute=#{civilDispute.civilDispute}
+	</update>
+	
+	<!-- 按条件查询用户信息 -->
+	<select id="findUser" resultMap="civilDisputeRM">
+		select * from civil_dispute
+		<if test="civilDispute!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="civilDispute.civilDispute!=null">
+					civil_dispute=#{civilDispute.civilDispute}
+				</if>
+				<if test="civilDispute.caseId!=null">
+					and case_id=#{civilDispute.caseId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

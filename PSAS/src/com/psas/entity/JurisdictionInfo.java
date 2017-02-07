@@ -10,6 +10,7 @@ public class JurisdictionInfo implements java.io.Serializable {
 
 	private Integer jurisdictionId;
 	private String jurisdictionName;
+	
 
 	// Constructors
 

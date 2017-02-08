@@ -30,6 +30,12 @@ public class TestFineInfoDao {
 		ac = new ClassPathXmlApplicationContext(conf);
 		dao = ac.getBean(FineInfoDao.BEAN_NAME, FineInfoDao.class);
 	}
+	/**
+	 * 
+	 * 查找所有追缴信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testFindAll(){
 		List<FineInfo> fine=dao.findAll();
@@ -37,31 +43,54 @@ public class TestFineInfoDao {
 			System.out.println(fineInfo);
 		}
 	}
+	/**
+	 * 
+	 * 新增追缴信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testAdd(){
 		FineInfo fine=new FineInfo();
-		fine.setCaseId(21);
-		fine.setFineCharacter("气枪");
-		fine.setFineReason("非礼妇女");
+		fine.setCaseId(1);
+		fine.setFineCharacter("枪");
+		fine.setFineReason("非礼");
 		fine.setFineTime(new Timestamp(System.currentTimeMillis()));
 		fine.setFineType(0);
-		fine.setIdCard("210283199208046035");
+		fine.setIdCard("210283198908046034");
 		fine.setPolicemanId(9);
 		dao.add(fine);
 		System.out.println(fine);
 	}
+	/**
+	 * 
+	 * 删除追缴信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testDelete(){
 	   FineInfo fine=new FineInfo(3);
 		dao.delete(fine);
 	}
+	/**
+	 * 
+	 * 修改追缴信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testUpdate(){
 		FineInfo fine=new FineInfo(2);
 		fine.setFineReason("偷裤衩");
 		dao.update(fine);
 	}
-	
+	/**
+	 * 
+	 * 追缴信息的分页查询DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testFindfineByPage() {
 		Page page = new Page(1);
@@ -70,6 +99,12 @@ public class TestFineInfoDao {
 			System.out.println(fineInfo);
 		}
 	}
+	/**
+	 * 
+	 * 追缴信息的IDDAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testFindfine() {
 		List<FineInfo> logs = dao.findFine(new FineInfo(1), null);
@@ -77,12 +112,15 @@ public class TestFineInfoDao {
 			System.out.println(fineInfo);
 		}
 	}
-	/*
-	 * 根据idCard查
+	/**
+	 * 
+	 * 追缴信息的idCard的单元测试
+	 * @throw
+	 * @return void
 	 */
 	@Test
 	public void testFindfine1(){
-		List<FineInfo> fine=dao.findFine(new FineInfo("210283199208046035"), null);
+		List<FineInfo> fine=dao.findFine(new FineInfo("210203199301315266"), null);
 		for (FineInfo fineInfo : fine) {
 			System.out.println(fineInfo);
 		}

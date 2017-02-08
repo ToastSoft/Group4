@@ -10,6 +10,13 @@ public class CitizenInfo implements java.io.Serializable {
 
 	// Fields
 
+	@Override
+	public String toString() {
+		return "CitizenInfo [idCard=" + idCard + ", idName=" + idName + ", idAge=" + idAge + ", idGender=" + idGender
+				+ ", idBirthday=" + idBirthday + ", idAddress=" + idAddress + ", idProfessional=" + idProfessional
+				+ ", idCompany=" + idCompany + ", nationId=" + nationId + "]";
+	}
+
 	private String idCard;
 	private String idName;
 	private Integer idAge;

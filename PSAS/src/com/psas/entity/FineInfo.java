@@ -17,6 +17,43 @@ public class FineInfo implements java.io.Serializable {
 	private String idCard;
 	private Integer policemanId;
 	private Integer caseId;
+	private AcceptCase acceptCase;
+	private CitizenInfo citizenInfo;
+	private PolicemanInfo policemanInfo;
+	public FineInfo(Integer fineId, Timestamp fineTime, Integer fineType, String fineCharacter, String fineReason,
+			String idCard, Integer policemanId, Integer caseId, AcceptCase acceptCase, CitizenInfo citizenInfo,
+			PolicemanInfo policemanInfo) {
+		super();
+		this.fineId = fineId;
+		this.fineTime = fineTime;
+		this.fineType = fineType;
+		this.fineCharacter = fineCharacter;
+		this.fineReason = fineReason;
+		this.idCard = idCard;
+		this.policemanId = policemanId;
+		this.caseId = caseId;
+		this.acceptCase = acceptCase;
+		this.citizenInfo = citizenInfo;
+		this.policemanInfo = policemanInfo;
+	}
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
+	public CitizenInfo getCitizenInfo() {
+		return citizenInfo;
+	}
+	public void setCitizenInfo(CitizenInfo citizenInfo) {
+		this.citizenInfo = citizenInfo;
+	}
+	public PolicemanInfo getPolicemanInfo() {
+		return policemanInfo;
+	}
+	public void setPolicemanInfo(PolicemanInfo policemanInfo) {
+		this.policemanInfo = policemanInfo;
+	}
 	/** default constructor */
 	public FineInfo() {
 	}
@@ -113,7 +150,8 @@ public class FineInfo implements java.io.Serializable {
 	public String toString() {
 		return "FineInfo [fineId=" + fineId + ", fineTime=" + fineTime + ", fineType=" + fineType + ", fineCharacter="
 				+ fineCharacter + ", fineReason=" + fineReason + ", idCard=" + idCard + ", policemanId=" + policemanId
-				+ ", caseId=" + caseId + "]";
+				+ ", caseId=" + caseId + ", acceptCase=" + acceptCase + ", citizenInfo=" + citizenInfo
+				+ ", policemanInfo=" + policemanInfo + "]";
 	}
 
 }

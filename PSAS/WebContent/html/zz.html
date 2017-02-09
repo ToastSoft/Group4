@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bar</title>
+    <script src="../script/echarts.min.js"></script>
+</head>
+<body>
+<div id="main" style="width:900px;height: 600px"></div>
+<script type="text/javascript">
+    var myChart=echarts.init(document.getElementById('main'));
+    var option={
+    title:{
+        text: '犯罪率'
+    },
+    toolbox:{
+        show:true,
+        feature:{
+            saveAsImage:{
+                show:true
+            }
+        }
+    },
+        tooltip:{
+          show:true
+        },
+        legend:{
+            data:['犯罪率']
+    },
+        xAxis:{
+            data:['沙河口区','高新园区','甘井子区','泉水区','中山区','普兰店区']
+        },
+        yAxis:{},
+        series:[{
+            name:'犯罪率',
+            type:'bar',
+            data:[5,20,36,10,10,20],
+            markPoint:{
+              data:[
+                  {type:'max',name:'最大值'},
+                  {type:'min',name:'最小值',symbol:'arrow'}
+              ]
+            },
+            markLine:{
+                data:[
+                    {type:'average',name:'平均值'}
+                ]
+            }
+        }]
+    };
+
+myChart.setOption(option);
+</script>
+</body>
+</html>

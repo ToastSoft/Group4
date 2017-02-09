@@ -1,0 +1,43 @@
+/*表格属性和排序标签属性*/
+.marn_box ul{
+        list-style-type:none;
+        margin:0px;
+        padding:0px;
+    }
+.marn_box li{
+        margin:8px;
+        padding:10px;
+        float:left;
+        width:100px;
+        height:190px;
+    }
+.marn_table{    
+            font-size:12px;
+            border-collapse: collapse;
+            border: 1px solid black; 
+ 
+        }
+.marn_table th{ 
+            background-color:;
+            height:30px;
+            width:100px;
+            border: 1px solid black;   
+        }
+.marn_table td{ 
+            height:30px;
+            width:100px;
+           border: 1px solid black;     
+    }
+
+/*背景颜色和背景图片*/
+.Marn_body{
+        background:url(../images/police.jpg)  center 0 no-repeat;
+        background-color:#011381;
+        margin:0px auto;
+}
+
+
+
+
+
+ 

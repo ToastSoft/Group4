@@ -1,0 +1,82 @@
+/*治安统计表*/
+*{  
+ margin: 0;
+ padding: 0;
+ }
+.public_security_div1{
+ width: 700px;
+ height: 800px;
+ margin: auto;
+ background-color: #F0F8FF;
+ border: 2px solid black;
+    } 
+.public_security_div2{
+ margin-left: 25px;
+ line-height: 50px;
+ width: 500px;
+ height: 50px;
+    }
+#s{
+margin-left: 50px;
+font-size: 1.5em;
+ }
+.public_security_div3{
+margin-left: 25px;
+width: 650px;
+height: 30px;
+ }
+.public_security_div4{
+ width: 650px;
+ height: 85px;
+ margin-left: 25px;
+ margin-top: 10px;
+}
+.public_security_tex{ 
+width: 500px;
+height: 70px;
+margin-right: -100px;
+border: 3px solid darkgray;
+ }
+input{
+border: 2px solid gray;
+}
+.public_security_div5{
+position:absolute;  
+margin-top: 17px;
+margin-bottom: 5px;
+margin-left:50px;
+}
+.public_security_div6{
+position: absolute;
+margin-top: 50px;
+margin-bottom: 5px;
+margin-left:20px; 
+}
+#p1{
+text-align: center;
+line-height: 110px;
+}
+.tex1{
+float: left;
+border: 3px solid darkgray;
+}
+.public_security_div7{
+    width: 700px;
+    height: 150px;
+}
+.public_security_div8{
+    width: 700px;
+    height: 150px;
+}
+.public_security_div9{
+    width: 700px;
+    height: 130px;
+}
+.public_security_div10{
+    width: 530px;
+    height: 80px;
+    margin-left: 150px;
+}
+textarea{
+    border: 2px solid gray;
+}

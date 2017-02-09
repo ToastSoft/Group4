@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.VictimInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="victimInfoRM">
+		select * from victim_info;
+	</select>
+	<select id="findCitizenInfo" parameterType="string" resultType="citizenInfo">
+		select * from citizen_info where id_card=#{idCard}
+	</select>
+	<select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<resultMap type="victimInfo" id="victimInfoRM">
+		<id column="id_card" property="idCard"/>
+		<id column="case_id" property="caseId"/>
+		<association property="citizenInfo" column="id_card"
+			javaType="citizenInfo" select="findCitizenInfo"></association>
+		<association property="acceptCase" column="case_id"
+			javaType="acceptCase" select="findAcceptCase"></association>
+	</resultMap>
+	<!-- 增加 -->
+	<insert id="add" parameterType="victimInfo">
+		insert into 
+		victim_info(id_card,case_id) values(#{victimInfo.idCard},#{victimInfo.caseId})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="victimInfo">
+	delete from victim_info where victim_id=#{victimInfo.victimId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="victimInfo">
+	update victim_info 
+	<trim prefix="set" prefixOverrides=",">
+		<if test="victimInfo.idCard!=null">
+			,id_card=#{victimInfo.idCard}
+		</if>
+		<if test="victimInfo.caseId!=null">
+			,case_id=#{victimInfo.caseId}
+		</if>
+	</trim>
+	where victim_id=#{victimInfo.victimId}
+	</update>
+	<!-- 按条件查询 -->
+	<select id="findUser" resultMap="victimInfoRM">
+		select * from victim_info
+		<if test="victimInfo!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="victimInfo.idCard!=null"> id_card=#{victimInfo.idCard}</if> 
+				<if test="victimInfo.caseId!=null">and case_id=#{victimInfo.caseId}</if> 
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

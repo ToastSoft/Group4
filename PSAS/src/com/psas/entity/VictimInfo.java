@@ -11,6 +11,8 @@ public class VictimInfo implements java.io.Serializable {
 	private Integer victimId;
 	private String idCard;
 	private Integer caseId;
+	private AcceptCase acceptCase;
+	private CitizenInfo citizenInfo;
 
 	// Constructors
 
@@ -22,6 +24,15 @@ public class VictimInfo implements java.io.Serializable {
 	public VictimInfo(String idCard, Integer caseId) {
 		this.idCard = idCard;
 		this.caseId = caseId;
+	}
+
+	public VictimInfo(Integer victimId, String idCard, Integer caseId, AcceptCase acceptCase, CitizenInfo citizenInfo) {
+		super();
+		this.victimId = victimId;
+		this.idCard = idCard;
+		this.caseId = caseId;
+		this.acceptCase = acceptCase;
+		this.citizenInfo = citizenInfo;
 	}
 
 	// Property accessors
@@ -48,6 +59,28 @@ public class VictimInfo implements java.io.Serializable {
 
 	public void setCaseId(Integer caseId) {
 		this.caseId = caseId;
+	}
+
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
+
+	public CitizenInfo getCitizenInfo() {
+		return citizenInfo;
+	}
+
+	public void setCitizenInfo(CitizenInfo citizenInfo) {
+		this.citizenInfo = citizenInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "VictimInfo [victimId=" + victimId + ", idCard=" + idCard + ", caseId=" + caseId + ", acceptCase="
+				+ acceptCase + ", citizenInfo=" + citizenInfo + "]";
 	}
 
 }

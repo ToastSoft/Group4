@@ -16,6 +16,8 @@ public class SuspectInfo implements java.io.Serializable {
 	private Integer handleCondition;
 	private String idCard;
 	private Integer caseId;
+	private AcceptCase acceptCase;
+	private CitizenInfo citizenInfo;
 
 	// Constructors
 
@@ -40,6 +42,35 @@ public class SuspectInfo implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	public SuspectInfo(Integer suspectId, Timestamp suspectInttime, Timestamp suspectOuttime, Integer handleCondition,
+			String idCard, Integer caseId, AcceptCase acceptCase, CitizenInfo citizenInfo) {
+		super();
+		this.suspectId = suspectId;
+		this.suspectInttime = suspectInttime;
+		this.suspectOuttime = suspectOuttime;
+		this.handleCondition = handleCondition;
+		this.idCard = idCard;
+		this.caseId = caseId;
+		this.acceptCase = acceptCase;
+		this.citizenInfo = citizenInfo;
+	}
+
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
+
+	public CitizenInfo getCitizenInfo() {
+		return citizenInfo;
+	}
+
+	public void setCitizenInfo(CitizenInfo citizenInfo) {
+		this.citizenInfo = citizenInfo;
+	}
 
 	public Integer getSuspectId() {
 		return this.suspectId;
@@ -87,6 +118,13 @@ public class SuspectInfo implements java.io.Serializable {
 
 	public void setCaseId(Integer caseId) {
 		this.caseId = caseId;
+	}
+
+	@Override
+	public String toString() {
+		return "SuspectInfo [suspectId=" + suspectId + ", suspectInttime=" + suspectInttime + ", suspectOuttime="
+				+ suspectOuttime + ", handleCondition=" + handleCondition + ", idCard=" + idCard + ", caseId=" + caseId
+				+ ", acceptCase=" + acceptCase + ", citizenInfo=" + citizenInfo + "]";
 	}
 
 }

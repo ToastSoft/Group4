@@ -23,3 +23,8 @@
 /spring-webmvc-3.2.8.RELEASE.jar
 /standard.jar
 /log4j-1.2.11.jar
+/commons-beanutils-1.8.0.jar
+/commons-collections.jar
+/commons-lang.jar
+/ezmorph-1.0.6.jar
+/json-lib-2.2.3-jdk15.jar

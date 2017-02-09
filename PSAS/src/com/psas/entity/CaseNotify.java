@@ -82,4 +82,11 @@ public class CaseNotify implements java.io.Serializable {
 		this.caseId = caseId;
 	}
 
+	@Override
+	public String toString() {
+		return "CaseNotify [caseNotifyId=" + caseNotifyId + ", benotifiedName=" + benotifiedName + ", alarmAddress="
+				+ alarmAddress + ", caseNotifyTime=" + caseNotifyTime + ", caseNotifyConsider=" + caseNotifyConsider
+				+ ", caseId=" + caseId + "]";
+	}
+
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.CaseNotifyDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultType="caseNotify">
+		select * from case_notify
+	</select>
+	<!-- 增加 -->
+	<insert id="add" parameterType="caseNotify">
+		insert into
+		case_notify values(#{caseNotifyId},#{benotifiedName},#{alarmAddress},#{caseNotifyTime},
+							#{caseNotifyConsider},#{caseId})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="caseNotify">
+		delete from case_notify where
+		case_notify_id=#{caseNotifyId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="caseNotify">
+		update case_notify
+		<trim prefix="set" prefixOverrides=",">
+			<if test="benotifiedName!=null">
+				,benotified_name=#{benotifiedName}
+			</if>
+			<if test="alarmAddress!=null">
+				,alarm_address=#{alarmAddress}
+			</if>
+			<if test="caseNotifyTime!=null">
+				,case_notify_time=#{caseNotifyTime}
+			</if>
+			<if test="caseNotifyConsider!=null">
+				,case_notify_consider=#{caseNotifyConsider}
+			</if>
+			<if test="caseId!=null">
+				,case_id=#{caseId}
+			</if>
+		</trim>
+		where case_notify_id=#{caseNotifyId}
+	</update>
+	<!-- 按条件查询 -->
+	<select id="findCaseNotify" resultType="caseNotify">
+		select * from case_notify
+		<if test="caseNotify!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="caseNotify.caseNotifyId!=null">and case_notify_id=#{caseNotify.caseNotifyId}</if> 
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+
+</mapper>

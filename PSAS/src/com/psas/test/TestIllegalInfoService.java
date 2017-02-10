@@ -9,23 +9,27 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.psas.entity.IllegalInfo;
 import com.psas.entity.Page;
 import com.psas.entity.PunishmentInfo;
 import com.psas.entity.UserInfo;
+import com.psas.entity.VictimInfo;
+import com.psas.service.IllegalInfoService;
 import com.psas.service.PunishmentInfoService;
 import com.psas.service.UserInfoService;
+import com.psas.service.VictimInfoService;
 
 /**
  * 
- * TODO公安局治安，行政处罚人员情况登记表的service层测试
+ * TODO 受害人信息表service层测试
  * @author  Cunbao Song
- * @data:  2017年2月5日 下午4:17:16
+ * @data:  2017年2月9日 上午9:52:33
  * @version:  V1.0
  */
-public class TestPunishmentService {
+public class TestIllegalInfoService {
 	ClassPathXmlApplicationContext ac;
 	String conf = "applicationContext.xml";
-	PunishmentInfoService service;
+	IllegalInfoService service;
 
 	static {
 		PropertyConfigurator.configure("log/log4j.properties");
@@ -34,7 +38,7 @@ public class TestPunishmentService {
 	@Before
 	public void init() {
 		ac = new ClassPathXmlApplicationContext(conf);
-		service = ac.getBean(PunishmentInfoService.BEAN_NAME, PunishmentInfoService.class);
+		service = ac.getBean(IllegalInfoService.BEAN_NAME, IllegalInfoService.class);
 	}
 
 	/**
@@ -45,9 +49,9 @@ public class TestPunishmentService {
 	 */
 	@Test
 	public void testFindAll() {
-		List<PunishmentInfo> users = service.findAll();
-		for (PunishmentInfo p : users) {
-			System.out.println(p);
+		List<IllegalInfo> users = service.findAll();
+		for (IllegalInfo illegalInfo : users) {
+			System.out.println(illegalInfo);
 		}
 	}
 
@@ -59,14 +63,10 @@ public class TestPunishmentService {
 	 */
 	@Test
 	public void testAdd() {
-		PunishmentInfo p=new PunishmentInfo();
-		p.setCaseId(1);
-		p.setIdCard("210203199304121831");
-		p.setPsId(1);
-		p.setPunishmentSituation("见义勇为卡到了");
-		p.setPunishmentTime(new Timestamp(System.currentTimeMillis()));
-		
-		service.add(p);
+		IllegalInfo i = new IllegalInfo();
+		i.setCaseId(1);
+		i.setIdCard("210203199304121831");
+		service.add(i);
 	}
 
 	/**
@@ -77,9 +77,9 @@ public class TestPunishmentService {
 	 */
 	@Test
 	public void testDelete() {
-		PunishmentInfo p=new PunishmentInfo();
-		p.setPunishmentId(5);
-		service.delete(p);
+		IllegalInfo i = new IllegalInfo();
+		i.setIllegalId(4);
+		service.delete(i);
 
 	}
 
@@ -91,13 +91,11 @@ public class TestPunishmentService {
 	 */
 	@Test
 	public void testUpdate() {
-		PunishmentInfo p=new PunishmentInfo();
-		p.setPunishmentId(4);
-		p.setCaseId(2);
-		p.setIdCard("210203199301315277");
-		p.setPsId(2);
-		p.setPunishmentTime(new Timestamp(System.currentTimeMillis()));
-		service.update(p);
+		IllegalInfo i = new IllegalInfo();
+		i.setCaseId(2);
+		i.setIdCard("210203199304121831");
+		i.setIllegalId(5);
+		service.update(i);
 	}
 
 	/**
@@ -108,10 +106,10 @@ public class TestPunishmentService {
 	 */
 	@Test
 	public void testFindById() {
-		PunishmentInfo p = new PunishmentInfo();
-		p.setPunishmentId(1);
-		 PunishmentInfo p1 = service.findUserById(p);
-		System.out.println(p1);
+		IllegalInfo i = new IllegalInfo();
+		i.setIllegalId(1);
+		IllegalInfo i1 = service.findUserById(i);
+		System.out.println(i1);
 	}
 
 	/**
@@ -122,10 +120,10 @@ public class TestPunishmentService {
 	 */
 	@Test
 	public void testFindByPage() {
-		Page page = new Page(2);
-		List<PunishmentInfo> users = service.findUserByPage(page);
-		for (PunishmentInfo p : users) {
-			System.out.println(p);
+		Page page = new Page(1);
+		List<IllegalInfo> users = service.findUserByPage(page);
+		for (IllegalInfo illegalInfo : users) {
+			System.out.println(illegalInfo);
 		}
 	}
 

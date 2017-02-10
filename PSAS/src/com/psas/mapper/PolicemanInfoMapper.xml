@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.PolicemanInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="policemanInfoRM">
+		select * from policeman_info;
+	</select>
+	<select id="findPublicSecurity" parameterType="int" resultType="publicSecurity">
+		select * from public_security where ps_id=#{psId}
+	</select>
+	<resultMap type="policemanInfo" id="policemanInfoRM">
+		<id column="ps_id" property="psId"></id>
+		<association property="publicSecurity"  column="ps_id"
+			javaType="publicSecurity" select="findPublicSecurity"></association>
+	</resultMap>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="policemanInfo">
+		insert into
+		policeman_info(policeman_name,policeman_gender,policeman_age,policeman_address,policeman_type,ps_id)
+		values(#{policemanInfo.policemanName},#{policemanInfo.policemanGender},#{policemanInfo.policemanAge},#{policemanInfo.policemanAddress},#{policemanInfo.policemanType},#{policemanInfo.psId})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="policemanInfo">
+		delete from policeman_info
+		where
+		policeman_id=#{policemanInfo.policemanId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="policemanInfo">
+		update policeman_info
+		<trim prefix="set" prefixOverrides=",">
+			<if test="policemanInfo.policemanName!=null">
+				,policeman_name=#{policemanInfo.policemanName}
+			</if>
+			<if test="policemanInfo.policemanGender!=null">
+				,policeman_gender=#{policemanInfo.policemanGender}
+			</if>
+			<if test="policemanInfo.policemanAge!=null">
+				,policeman_age=#{policemanInfo.policemanAge}
+			</if>
+			<if test="policemanInfo.policemanAddress!=null">
+				,policeman_address=#{policemanInfo.policemanAddress}
+			</if>
+			<if test="policemanInfo.policemanType!=null">
+				,policeman_type=#{policemanInfo.policemanType}
+			</if>
+			<if test="policemanInfo.psId!=null">
+				,ps_id=#{policemanInfo.psId}
+			</if>
+		</trim>
+		where policeman_id=#{policemanInfo.policemanId}
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findPoliceman" resultMap="policemanInfoRM">
+		select * from policeman_info
+		<if test="policemanInfo!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="policemanInfo.policemanId!=null">
+					and policeman_id=#{policemanInfo.policemanId}
+				</if>
+				<if test="policemanInfo.psId!=null">
+					and ps_id=#{policemanInfo.psId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

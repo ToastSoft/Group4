@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.psas.dao.VictimInfoDao">
+<mapper namespace="com.psas.dao.IllegalInfoDao">
 	<!-- 查找所有 -->
-	<select id="findAll" resultMap="victimInfoRM">
-		select * from victim_info;
+	<select id="findAll" resultMap="IllegalInfoRM">
+		select * from illegal_info;
 	</select>
 	<select id="findCitizenInfo" parameterType="string" resultType="citizenInfo">
 		select * from citizen_info where id_card=#{idCard}
@@ -13,7 +13,7 @@
 	<select id="findAcceptCase" parameterType="int" resultType="acceptCase">
 		select * from accept_case where case_id=#{caseId}
 	</select>
-	<resultMap type="victimInfo" id="victimInfoRM">
+	<resultMap type="illegalInfo" id="IllegalInfoRM">
 		<id column="id_card" property="idCard"/>
 		<id column="case_id" property="caseId"/>
 		<association property="citizenInfo" column="id_card"
@@ -22,35 +22,35 @@
 			javaType="acceptCase" select="findAcceptCase"></association>
 	</resultMap>
 	<!-- 增加 -->
-	<insert id="add" parameterType="victimInfo">
+	<insert id="add" parameterType="illegalInfo">
 		insert into 
-		victim_info(id_card,case_id) values(#{victimInfo.idCard},#{victimInfo.caseId})
+		illegal_info(id_card,case_id) values(#{illegalInfo.idCard},#{illegalInfo.caseId})
 	</insert>
 	<!-- 删除 -->
-	<delete id="delete" parameterType="victimInfo">
-	delete from victim_info where victim_id=#{victimInfo.victimId}
+	<delete id="delete" parameterType="illegalInfo">
+	delete from illegal_info where illegal_id=#{illegalInfo.illegalId}
 	</delete>
 	<!-- 修改 -->
-	<update id="update" parameterType="victimInfo">
-	update victim_info 
+	<update id="update" parameterType="illegalInfo">
+	update illegal_info 
 	<trim prefix="set" prefixOverrides=",">
-		<if test="victimInfo.idCard!=null">
-			,id_card=#{victimInfo.idCard}
+		<if test="illegalInfo.idCard!=null">
+			,id_card=#{illegalInfo.idCard}
 		</if>
-		<if test="victimInfo.caseId!=null">
-			,case_id=#{victimInfo.caseId}
+		<if test="illegalInfo.caseId!=null">
+			,case_id=#{illegalInfo.caseId}
 		</if>
 	</trim>
-	where victim_id=#{victimInfo.victimId}
+	where illegal_id=#{illegalInfo.illegalId}
 	</update>
 	<!-- 按条件查询 -->
-	<select id="findUser" resultMap="victimInfoRM">
-		select * from victim_info
-		<if test="victimInfo!=null">
+	<select id="findUser" resultMap="IllegalInfoRM">
+		select * from illegal_info
+		<if test="illegalInfo!=null">
 			<trim prefix="where" prefixOverrides="and">
-				<if test="victimInfo.idCard!=null"> id_card=#{victimInfo.idCard}</if> 
-				<if test="victimInfo.caseId!=null">and case_id=#{victimInfo.caseId}</if>
-				<if test="victimInfo.victimId!=null">and victim_id=#{victimInfo.victimId}</if> 
+				<if test="illegalInfo.idCard!=null"> id_card=#{illegalInfo.idCard}</if> 
+				<if test="illegalInfo.caseId!=null">and case_id=#{illegalInfo.caseId}</if> 
+				<if test="illegalInfo.illegalId!=null">and illegal_id=#{illegalInfo.illegalId}</if> 
 			</trim>
 		</if>
 		<if test="page!=null">

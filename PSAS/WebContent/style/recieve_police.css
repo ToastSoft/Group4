@@ -1,0 +1,58 @@
+   /*接处警登记表*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.recieve_police_div1{
+    width:650px;
+    height: 500px;
+    border: 2px solid gray;
+    background-color: #F0F8FF;
+    margin: auto;
+}
+.recieve_police_div2 h2{
+    width: 450px;
+    height: 40px;
+    margin: auto;
+    text-align: center;
+    font-size: 2em;  
+}
+.recieve_police_div3{
+    width: 600px;
+    height: 30px;
+    margin-left: 25px;
+}
+#s1{
+    width: 100px;
+    border: 2px solid gray;
+}
+.recieve_police_div4{
+    width: 600px;
+    height: 100px;
+    margin-left: 25px;
+}
+#tex{
+    border: 2px solid gray;
+}
+.recieve_police_div5{
+    width: 600px;
+    height: 50px;
+    margin-left: 25px;
+}
+.recieve_police_div6{
+    width: 270px;
+    height: 35px;
+    margin-left: 300px;
+    margin-top: -20px;
+}
+.recieve_police_div7{
+    width: 600px;
+    height: 35px;
+    margin-left: 25px;
+}
+input{
+    border: 2px solid gray;
+}
+select{
+    border: 2px solid gray;
+}

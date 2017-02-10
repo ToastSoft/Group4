@@ -1,0 +1,139 @@
+/*刑事案件登记表CSS*/
+
+.criminal_div1{
+    width: 800px;
+    height: 950px;
+    margin: auto;
+    border: 2px solid gray;
+    background-color: #F0F8FF;
+}
+.criminal_div2{
+     margin-left: 15px;
+     line-height: 50px;
+     width: 500px;
+     height: 50px;
+    
+}
+#s{
+    font-size: 2em;
+    margin-left: 50px;
+}
+.criminal_div3{
+    width: 750px;
+    height: 50px;
+    margin-left: 25px;
+}
+.criminal_div4{
+    width: 750px;
+    height: 110px;
+    margin-left: 0px;
+   
+}
+.criminal_d1{
+    width: 700px;
+    height: 30px;
+    margin-left: 0px;
+    margin-top: 30px;
+    
+}
+#tex{
+    border: 2px solid gray;
+}
+#tex1{
+    margin-top: -10px;
+    border: 2px solid gray;
+}
+.criminal_div5{
+position:absolute;  
+margin-top: -5px;
+margin-bottom: 5px;
+margin-left:50px;
+}
+.criminal_div6{
+    width: 580px;
+    height: 150px;
+    border:2px solid red;
+    margin-left: 100px;
+    display: inline;
+    line-height: 20px;
+    margin-top: 30px;
+    float: left;
+}
+.criminal_div7{
+    width: 790px;
+    height: 200px;
+}
+.criminal_div8{
+    width:790px;
+    height: 120px;
+}
+.criminal_div9{
+   width: 100px;
+   height: 110px;
+   position: absolute;
+   margin-top:10px;
+   margin-bottom: 5px;
+   margin-left:0px; 
+}
+.criminal_div10{
+    width: 580px;
+    height: 120px;
+    border: 2px solid red;
+    margin-left: 100px;
+    display: inline;
+    float: left;
+    margin-top: 0px;
+}
+#p1{
+    text-align: center;
+    margin-top: 50px;
+}
+.criminal_div11{
+    width: 800px;
+    height: 150px;
+}
+.criminal_div12{
+    width: 750px;
+    height: 150px;
+    margin-left: 25px;
+    margin-top: 0px;
+}
+.criminal_div13{
+    width: 780px;
+    height: 120px;
+}
+.criminal_div14{
+    width: 80px;
+    height: 110px;
+    margin-left: 25px;
+  
+}
+.criminal_div15{
+    width:152px;
+    height:50px;
+    margin-left: 130px;
+    margin-top: -100px;
+}
+.criminal_div16{
+    width: 480px;
+    height: 100px;
+    margin-left: 290px;
+    margin-top: -50px;
+    float: left;
+}
+
+#input{
+    border-bottom: 3px;
+    border-bottom-style: double;
+    border-bottom-color: black;
+   
+}
+.input{
+    border-bottom: 3px;
+    border-bottom-style: double;
+    border-bottom-color: black;
+    
+}
+input{
+    border:2px solid gray;
+}

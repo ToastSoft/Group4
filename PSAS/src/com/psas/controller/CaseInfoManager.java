@@ -1,7 +1,6 @@
 package com.psas.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,13 +16,26 @@ import com.psas.service.AlarmInfoService;
 import com.psas.service.impl.AlarmInfoServiceImpl;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
+/**
+ * 案件信息管理controller
+ * @author  XulaiWang
+ * @data:  2017年2月10日 下午1:39:27
+ * @version:  V1.0
+ */
 @Controller
 public class CaseInfoManager {
 	@Resource(name = AlarmInfoServiceImpl.BEAN_NAME)
 	public AlarmInfoService alarmInfoService;
 
+	/**
+	 * 处理跳转到案件信息管理页面的请求
+	 * @param select
+	 * @param data
+	 * @return
+	 * @throw
+	 * @return ModelAndView
+	 */
 	@RequestMapping("/case_info_manager.do")
 	public ModelAndView toCaseInfoManager(String select, ModelMap data) {
 		System.out.println(select);
@@ -38,7 +50,7 @@ public class CaseInfoManager {
 		for (AlarmInfo a : alarms) {
 			System.out.println(a);
 		}
-		JSONArray json=JSONArray.fromObject(alarms);
+		JSONArray json = JSONArray.fromObject(alarms);
 		resp.getWriter().println(json);
 	}
 

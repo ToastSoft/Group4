@@ -11,6 +11,8 @@ public class IllegalInfo implements java.io.Serializable {
 	private Integer illegalId;
 	private String idCard;
 	private Integer caseId;
+	private AcceptCase acceptCase;
+	private CitizenInfo citizenInfo;
 
 	// Constructors
 
@@ -24,10 +26,38 @@ public class IllegalInfo implements java.io.Serializable {
 		this.caseId = caseId;
 	}
 
+	
+	public IllegalInfo(Integer illegalId, String idCard, Integer caseId, AcceptCase acceptCase,
+			CitizenInfo citizenInfo) {
+		super();
+		this.illegalId = illegalId;
+		this.idCard = idCard;
+		this.caseId = caseId;
+		this.acceptCase = acceptCase;
+		this.citizenInfo = citizenInfo;
+	}
+
 	// Property accessors
 
+	
 	public Integer getIllegalId() {
 		return this.illegalId;
+	}
+
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
+
+	public CitizenInfo getCitizenInfo() {
+		return citizenInfo;
+	}
+
+	public void setCitizenInfo(CitizenInfo citizenInfo) {
+		this.citizenInfo = citizenInfo;
 	}
 
 	public void setIllegalId(Integer illegalId) {
@@ -48,6 +78,12 @@ public class IllegalInfo implements java.io.Serializable {
 
 	public void setCaseId(Integer caseId) {
 		this.caseId = caseId;
+	}
+
+	@Override
+	public String toString() {
+		return "IllegalInfo [illegalId=" + illegalId + ", idCard=" + idCard + ", caseId=" + caseId + ", acceptCase="
+				+ acceptCase + ", citizenInfo=" + citizenInfo + "]";
 	}
 
 }

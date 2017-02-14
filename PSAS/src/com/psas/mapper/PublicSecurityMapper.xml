@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.PublicSecurityDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultType="publicSecurity">
+		select * from public_security;
+	</select>
+	<!-- 增加 -->
+	<insert id="add" parameterType="publicSecurity">
+		insert into public_security(ps_name,ps_telephone,ps_address,ps_leader_name) 
+		values(#{publicSecurity.psName},#{publicSecurity.psTelephone},#{publicSecurity.psAddress},#{publicSecurity.psLeaderName})	
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="publicSecurity">
+		delete from public_security
+		where
+		ps_id=#{publicSecurity.psId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="publicSecurity">
+		update public_security
+		<trim prefix="set" prefixOverrides=",">
+			<if test="publicSecurity.psName!=null">
+				,ps_name=#{publicSecurity.psName}
+			</if>
+			<if test="publicSecurity.psTelephone!=null">
+				,ps_telephone=#{publicSecurity.psTelephone}
+			</if>
+			<if test="publicSecurity.psAddress!=null">
+				,ps_address=#{publicSecurity.psAddress}
+			</if>
+			<if test="publicSecurity.psLeaderName!=null">
+				,ps_leader_name=#{publicSecurity.psLeaderName}
+			</if>
+		</trim>
+		where ps_id=#{publicSecurity.psId}
+	</update>
+<!-- 按条件查询用户信息 -->
+	<select id="findPublicSecurity" resultType="publicSecurity">
+		select * from public_security
+		<if test="publicSecurity!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="publicSecurity.psId!=null">
+				and	ps_id=#{publicSecurity.psId}
+				</if>
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

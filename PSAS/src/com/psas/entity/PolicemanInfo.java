@@ -15,7 +15,7 @@ public class PolicemanInfo implements java.io.Serializable {
 	private String policemanAddress;
 	private String policemanType;
 	private Integer psId;
-
+	private PublicSecurity publicSecurity;
 	// Constructors
 
 	/** default constructor */
@@ -34,9 +34,33 @@ public class PolicemanInfo implements java.io.Serializable {
 
 	// Property accessors
 
+	public PolicemanInfo(Integer policemanId, String policemanName, String policemanGender, Integer policemanAge,
+			String policemanAddress, String policemanType, Integer psId, PublicSecurity publicSecurity) {
+		super();
+		this.policemanId = policemanId;
+		this.policemanName = policemanName;
+		this.policemanGender = policemanGender;
+		this.policemanAge = policemanAge;
+		this.policemanAddress = policemanAddress;
+		this.policemanType = policemanType;
+		this.psId = psId;
+		this.publicSecurity = publicSecurity;
+	}
+
+	
+	public PublicSecurity getPublicSecurity() {
+		return publicSecurity;
+	}
+
+	public void setPublicSecurity(PublicSecurity publicSecurity) {
+		this.publicSecurity = publicSecurity;
+	}
+
 	public Integer getPolicemanId() {
 		return this.policemanId;
 	}
+
+
 
 	public void setPolicemanId(Integer policemanId) {
 		this.policemanId = policemanId;
@@ -94,7 +118,9 @@ public class PolicemanInfo implements java.io.Serializable {
 	public String toString() {
 		return "PolicemanInfo [policemanId=" + policemanId + ", policemanName=" + policemanName + ", policemanGender="
 				+ policemanGender + ", policemanAge=" + policemanAge + ", policemanAddress=" + policemanAddress
-				+ ", policemanType=" + policemanType + ", psId=" + psId + "]";
+				+ ", policemanType=" + policemanType + ", psId=" + psId + ", publicSecurity=" + publicSecurity + "]";
 	}
+
+	
 
 }

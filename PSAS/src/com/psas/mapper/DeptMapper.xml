@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.DeptDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultType="dept">
+		select * from dept;
+	</select>
+	<!-- 新增用户 -->
+	<insert id="add" parameterType="dept">
+		insert into
+		dept(dept_name)
+		values(#{dept.deptName})
+	</insert>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="dept">
+		delete from dept
+		where
+		dept_id=#{dept.deptId}
+	</delete>
+	<!-- 修改用户信息 -->
+	<update id="update" parameterType="dept">
+		update dept
+		<trim prefix="set" prefixOverrides=",">
+			<if test="dept.deptName!=null">
+				,dept_name=#{dept.deptName}
+			</if>
+		</trim>
+		where
+		dept_id=#{dept.deptId}
+	</update>
+	<!-- 按条件查询用户信息 -->
+	<select id="findDept" resultType="dept">
+		select * from dept
+		<if test="dept!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="dept.deptId!=null">
+					dept_id=#{dept.deptId}
+				</if>
+				
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

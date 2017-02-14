@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.psas.dao.IllegalInfoDao">
+	<!-- 查找所有 -->
+	<select id="findAll" resultMap="IllegalInfoRM">
+		select * from illegal_info;
+	</select>
+	<select id="findCitizenInfo" parameterType="string" resultType="citizenInfo">
+		select * from citizen_info where id_card=#{idCard}
+	</select>
+	<select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<resultMap type="illegalInfo" id="IllegalInfoRM">
+		<id column="id_card" property="idCard"/>
+		<id column="case_id" property="caseId"/>
+		<association property="citizenInfo" column="id_card"
+			javaType="citizenInfo" select="findCitizenInfo"></association>
+		<association property="acceptCase" column="case_id"
+			javaType="acceptCase" select="findAcceptCase"></association>
+	</resultMap>
+	<!-- 增加 -->
+	<insert id="add" parameterType="illegalInfo">
+		insert into 
+		illegal_info(id_card,case_id) values(#{illegalInfo.idCard},#{illegalInfo.caseId})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="illegalInfo">
+	delete from illegal_info where illegal_id=#{illegalInfo.illegalId}
+	</delete>
+	<!-- 修改 -->
+	<update id="update" parameterType="illegalInfo">
+	update illegal_info 
+	<trim prefix="set" prefixOverrides=",">
+		<if test="illegalInfo.idCard!=null">
+			,id_card=#{illegalInfo.idCard}
+		</if>
+		<if test="illegalInfo.caseId!=null">
+			,case_id=#{illegalInfo.caseId}
+		</if>
+	</trim>
+	where illegal_id=#{illegalInfo.illegalId}
+	</update>
+	<!-- 按条件查询 -->
+	<select id="findUser" resultMap="IllegalInfoRM">
+		select * from illegal_info
+		<if test="illegalInfo!=null">
+			<trim prefix="where" prefixOverrides="and">
+				<if test="illegalInfo.idCard!=null"> id_card=#{illegalInfo.idCard}</if> 
+				<if test="illegalInfo.caseId!=null">and case_id=#{illegalInfo.caseId}</if> 
+				<if test="illegalInfo.illegalId!=null">and illegal_id=#{illegalInfo.illegalId}</if> 
+			</trim>
+		</if>
+		<if test="page!=null">
+			limit #{page.start},#{page.PAGESIZE}
+		</if>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

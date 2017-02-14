@@ -25,6 +25,12 @@ public class TestCaseLaterDao {
 		ac = new ClassPathXmlApplicationContext(conf);
 		dao = ac.getBean(CaseLaterDao.BEAN_NAME, CaseLaterDao.class);
 	}
+	/**
+	 * 
+	 * 查找所有未及时破案说明书信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testFindAll(){
 		List<CaseLater> cl=dao.findAll();
@@ -33,6 +39,12 @@ public class TestCaseLaterDao {
 		}
 		
 	}
+	/**
+	 * 
+	 * 新增未及时破案说明书信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testAdd(){
 		CaseLater later=new CaseLater();
@@ -41,11 +53,23 @@ public class TestCaseLaterDao {
 		later.setSupplyInfo("没了");
 		dao.add(later);
 	}
+	/**
+	 * 
+	 * 删除未及时说明书信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testDelete(){
 		CaseLater later=new CaseLater(4);
 		dao.delete(later);
 	}
+	/**
+	 * 
+	 * 修改未及时破案书信息DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testUpdate(){
 		CaseLater later=new CaseLater(3);
@@ -53,6 +77,12 @@ public class TestCaseLaterDao {
 		later.setSupplyInfo("I don't know");
 		dao.update(later);
 	}
+	/**
+	 * 
+	 * 未及时破案书信息分页查询DAO单元测试
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testFindCaseByPage(){
 		Page page=new Page(1);
@@ -61,6 +91,12 @@ public class TestCaseLaterDao {
 			System.out.println(caseLater);
 		}
 	}
+	/**
+	 * 
+	 * 根据ID查找所有未及时破案书信息
+	 * @throw
+	 * @return void
+	 */
 	@Test
 	public void testFindCaseById(){
 		List<CaseLater> cl1=dao.findCase(new CaseLater(1),null);

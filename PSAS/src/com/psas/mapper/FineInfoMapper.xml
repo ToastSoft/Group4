@@ -4,9 +4,33 @@
 
 <mapper namespace="com.psas.dao.FineInfoDao">
 	<!-- 查找所有 -->
-	<select id="findAll" resultType="fineInfo">
+	<select id="findAll" resultMap="fineInfoRM">
 		select * from fine_info
 	</select>
+	 <select id="findAcceptCase" parameterType="int" resultType="acceptCase">
+		select * from accept_case where case_id=#{caseId}
+	</select>
+	<select id="findCitizenInfo" parameterType="string" resultType="citizenInfo">
+	    select * from citizen_info where id_card=#{idCard}
+	</select>
+	<select id="findPolicemanInfo" parameterType="int" resultType="policemanInfo">
+	    select * from policeman_info where policeman_id=#{policemanId}
+	</select>
+	<resultMap type="fineInfo" id="fineInfoRM">
+		<id column="case_id" property="caseId"/>
+		<id column="id_card" property="idCard"/>
+		<id column="policeman_id" property="policemanId"/>
+		<association property="acceptCase" column="case_id"
+			javaType="acceptCase" select="findAcceptCase">
+		</association>
+		<association property="citizenInfo" column="id_card"
+			javaType="citizenInfo" select="findCitizenInfo">
+		</association>
+	    <association property="policemanInfo" column="policeman_id" javaType="policemanInfo"
+	        select="findPolicemanInfo">
+	    </association>
+	</resultMap>
+	
 	<!-- 增加 -->
 <insert id="add" parameterType="fineInfo">
 		insert into
@@ -40,7 +64,7 @@ delete from fine_info where fine_id=#{fine.fineId}
 		where fine_id=#{fine.fineId}
 	</update>
 	<!-- 按条件查询 -->
-	<select id="findFine" resultType="fineInfo">
+	<select id="findFine" resultMap="fineInfoRM">
 		select * from fine_info
 		<if test="fine!=null">
 			<trim prefix="where" prefixOverrides="and">

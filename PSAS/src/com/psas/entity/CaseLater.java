@@ -8,6 +8,11 @@ public class CaseLater implements java.io.Serializable {
 	// Fields
 
 	private Integer caseLaterId;
+	public CaseLater(Integer caseLaterId) {
+		super();
+		this.caseLaterId = caseLaterId;
+	}
+
 	private String laterReason;
 	private String supplyInfo;
 	private Integer caseId;
@@ -19,15 +24,6 @@ public class CaseLater implements java.io.Serializable {
 
 	// Constructors
 
-
-
-
-
-
-	public CaseLater(Integer caseId) {
-		super();
-		this.caseId = caseId;
-	}
 
 
 	public CaseLater(Integer caseLaterId, String laterReason, String supplyInfo, Integer caseId,

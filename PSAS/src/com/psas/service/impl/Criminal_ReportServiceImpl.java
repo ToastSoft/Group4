@@ -10,6 +10,13 @@ import com.psas.dao.Criminal_ReportDao;
 import com.psas.entity.CriminalReport;
 import com.psas.entity.Page;
 import com.psas.service.Criminal_ReportService;
+/**
+ * 
+ * 刑事案件登记书信息service实现类
+ * @author  XuzhenHAO
+ * @data:  2017年2月7日 上午9:20:18
+ * @version:  V1.0
+ */
 @Service("criminal_ReportService")
 public class Criminal_ReportServiceImpl implements Criminal_ReportService{
 	@Resource(name=Criminal_ReportDao.BEAN_NAME)

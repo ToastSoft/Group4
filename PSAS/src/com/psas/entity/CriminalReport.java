@@ -14,6 +14,17 @@ public class CriminalReport implements java.io.Serializable {
 	private String caseReport;
 	private Timestamp reportTime;
 	private Integer caseId;
+	private AcceptCase acceptCase;
+
+	public AcceptCase getAcceptCase() {
+		return acceptCase;
+	}
+
+
+	public void setAcceptCase(AcceptCase acceptCase) {
+		this.acceptCase = acceptCase;
+	}
+
 
 	/** default constructor */
 	public CriminalReport() {
@@ -82,7 +93,7 @@ public class CriminalReport implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "CriminalReport [criminalReportId=" + criminalReportId + ", caseReport=" + caseReport + ", reportTime="
-				+ reportTime + ", caseId=" + caseId + "]";
+				+ reportTime + ", caseId=" + caseId + ", acceptCase=" + acceptCase + "]";
 	}
 
 }

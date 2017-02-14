@@ -10,6 +10,13 @@ import com.psas.dao.FineInfoDao;
 import com.psas.entity.FineInfo;
 import com.psas.entity.Page;
 import com.psas.service.FineInfoService;
+/**
+ * 
+ *追缴信息service实现类
+ * @author  XuzhenHAO
+ * @data:  2017年2月7日 上午8:58:07
+ * @version:  V1.0
+ */
 @Service("fineInfoService")
 public class FineInfoServiceImpl implements FineInfoService{
 	@Resource(name=FineInfoDao.BEAN_NAME)

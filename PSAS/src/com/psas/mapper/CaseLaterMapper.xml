@@ -45,8 +45,7 @@ update case_later
 		select * from case_later
 		<if test="caseLater!=null">
 			<trim prefix="where" prefixOverrides="and">
-				<if test="caseLater.caseId!=null">and case_id=#{caseLater.caseId}</if>
-				<if test="caseLater.policemanId!=nu"></if>
+				<if test="caseLater.caseLaterId!=null">and case_later_id=#{caseLater.caseLaterId}</if>
 			</trim>
 		</if>
 		<if test="page!=null">

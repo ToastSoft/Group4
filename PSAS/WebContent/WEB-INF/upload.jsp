@@ -29,6 +29,14 @@
 		$("#s").attr("src", a)
 
 	}
+	function getSelect(){
+		var select=$("#select option:selected").val();
+		var form=$("#form").attr("action");
+		console.log(form);
+		$("form").attr("action",form+"?select="+select);
+		$("form").submit();
+		
+	}
 </script>
 </head>
 <body class="Marn_body">
@@ -55,7 +63,16 @@
 			<div data-options="region:'south',split:true" style="height: 50px;"></div>
 
 			<div data-options="region:'center',title:'Main Title'">
-				<iframe id="s" src="" style="width: 100%; height: 100%;"></iframe>
+				<form action="upload.do" method="post" enctype="multipart/form-data" id="form">
+					<select name="select" id="select">
+						<option value="alarmInfo" selected>接处警信息</option>
+						<option value="xxxinfo">xxx信息</option>
+						<option value="xxxxxinfo">xxxxx信息</option>
+						<option value="asainfo">xxxxxx信息</option>
+					</select> <input type="file" name="file"> <br>
+					<input type="button" value="上传" onclick="getSelect();">
+				</form>
+
 			</div>
 		</div>
 	</div>

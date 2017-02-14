@@ -58,6 +58,13 @@
 	</aop:config>
 	<!-- 开启AOP动态扫描 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="1000000" />
+		<!-- 为了捕获异常，延迟解析 -->
+		<property name="resolveLazily" value="true"></property>
+	</bean>
 
 
 </beans>

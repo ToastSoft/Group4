@@ -62,4 +62,17 @@ public class CaseInfoManager {
 		this.alarmInfoService = alarmInfoService;
 	}
 
+	@RequestMapping("toalarm_info.do")
+	public ModelAndView toalarm_info(HttpServletResponse resp, ModelMap data) throws IOException {
+		//		resp.setCharacterEncoding("UTF-8");
+		List<AlarmInfo> alarms = alarmInfoService.findAll();
+		//		for (AlarmInfo a : alarms) {
+		//			System.out.println(a);
+		//		}
+		JSONArray json = JSONArray.fromObject(alarms);
+		//		resp.getWriter().println(json);
+		data.addAttribute("alarmInfo", json);
+		return new ModelAndView("form/alarm_info");
+	}
+
 }

@@ -156,7 +156,8 @@
 				</div>
 			</div>
 			<div data-options="region:'center',title:'Main Title'">
-				<iframe id="s" src="form/${select }.jsp" style="width:100%;height:100%;"></iframe>
+				<iframe src="to${select }.do" width="100%" height="100%"></iframe>
+
 			</div>
 		</div>
 	</div>
